@@ -6,22 +6,26 @@ const rl = readline.createInterface({
 });
 
 // simple if
-if (1) {
-    console.log("Hello, world!")
+let name = "Teddy";
+if (name) {
+    console.log(`Hello, ${name}!`)
 }
 
 // if else
-rl.question("How many cars do you own?\n", (numberOfCars) => {
-
-    if (parseInt(numberOfCars) < 1) {
+rl.question("How many cars do you own?\n", (input) => {
+    const numberOfcars = parseInt(input);
+    if (numberOfcars === 0) {
         console.log("You should get one!");
     }
-    else if (parseInt(numberOfCars) === 1) {
+    else if (numberOfcars === 1) {
         console.log("Yeah, me too!");
     }
-    else
+    else if (numberOfcars > 1) {
         console.log("Why do you need more than 1?");
-
+    }
+    else {
+        console.log("I don't know what you mean.");
+    }
     rl.close();
 });
 
