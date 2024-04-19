@@ -16,6 +16,7 @@ switch (day) {
         break;
     case "Friday":
         console.log("Clean the windows!");
+        break;
     case "Saturday":
     case "Sunday":
         console.log("Just relax!");
