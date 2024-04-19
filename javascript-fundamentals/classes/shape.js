@@ -1,13 +1,13 @@
 export class Shape {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name
+  }
 
-    describe() {
-        console.log(`This is a ${this.name}.`);
-    }
+  describe() {
+    console.log(`This is a ${this.name}.`)
+  }
 
-    calculateArea() {
-        return "Area calculation not implemented for this shape.";
-    }
+  calculateArea() {
+    return 'Area calculation not implemented for this shape.'
+  }
 }
