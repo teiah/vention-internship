@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
-import { getHeaderTitle } from '../../../src/help-functions.js'
+import { getHeaderTitle, getDescriptionText } from '../../../src/help-functions.js'
 
 describe('Javascript Alerts', () => {
   it('Alerts', async () => {
@@ -13,9 +13,8 @@ describe('Javascript Alerts', () => {
 
     // Confirm that the description text is “Here are some examples of different JavaScript alerts which can be troublesome for automation”.
     const expectedDescription = 'Here are some examples of different JavaScript alerts which can be troublesome for automation'
-    const description = await browser.$(`p=${expectedDescription}`)
-    const actualDescription = await description.getText()
-    assert.equal(actualDescription, expectedDescription, 'Page header should be "JavaScript Alerts"')
+    const actualDescription = await getDescriptionText(expectedDescription)
+    assert.equal(actualDescription, expectedDescription, `Page header should be "${expectedDescription}"`)
 
     // Validate the presence of the following buttons: "Click for JS Alert", "Click for JS Confirm", and "Click for JS Prompt".
     const jSAlertButton = await browser.$('button*=JS Alert')

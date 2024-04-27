@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
-import { getHeaderTitle } from '../../../src/help-functions.js'
+import { getHeaderTitle, getDescriptionText } from '../../../src/help-functions.js'
 
 describe('Hover exercise', () => {
   it('Should hover over elements', async () => {
@@ -13,8 +13,7 @@ describe('Hover exercise', () => {
 
     // Confirm the description text is “Hover over the image for additional information”.
     const expectedDescription = 'Hover over the image for additional information'
-    const description = await browser.$(`p=${expectedDescription}`)
-    const actualDescription = await description.getText()
+    const actualDescription = await getDescriptionText(expectedDescription)
     assert.equal(actualDescription, expectedDescription, `Page header should be ${expectedDescription}`)
 
     // Hover over Image #1 and validate the name "user1" and the "View Profile" link are displayed.
