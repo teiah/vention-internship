@@ -1,15 +1,15 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
+import { getHeaderTitle } from '../../../src/help-functions.js'
 
 describe('Checkboxes exercise', () => {
   it('Should check/uncheck boxes', async () => {
     await browser.url('https://the-internet.herokuapp.com/checkboxes')
 
     // Verify the page header is "Checkboxes".
-    const header = await browser.$('h3=Checkboxes')
-    const actualHeaderTitle = await header.getText()
     const expectedHeaderTitle = 'Checkboxes'
-    assert.equal(actualHeaderTitle, expectedHeaderTitle, 'Page header should be "Checkboxes"')
+    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that checkbox 1 and checkbox 2 are present, checkbox 1 is unchecked and checkbox 2 is checked.
     const checkbox1 = await browser.$('//form/input[1]')

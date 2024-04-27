@@ -1,15 +1,15 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
+import { getHeaderTitle } from '../../../src/help-functions.js'
 
 describe('Javascript Alerts', () => {
   it('Alerts', async () => {
     await browser.url('https://the-internet.herokuapp.com/javascript_alerts')
 
     // Verify the page header is "JavaScript Alerts".
-    const header = await browser.$('h3=JavaScript Alerts')
-    const actualHeaderTitle = await header.getText()
     const expectedHeaderTitle = 'JavaScript Alerts'
-    assert.equal(actualHeaderTitle, expectedHeaderTitle, 'Page header should be "JavaScript Alerts"')
+    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that the description text is “Here are some examples of different JavaScript alerts which can be troublesome for automation”.
     const expectedDescription = 'Here are some examples of different JavaScript alerts which can be troublesome for automation'

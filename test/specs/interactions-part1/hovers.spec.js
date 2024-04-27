@@ -1,15 +1,15 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
+import { getHeaderTitle } from '../../../src/help-functions.js'
 
 describe('Hover exercise', () => {
   it('Should hover over elements', async () => {
     await browser.url('https://the-internet.herokuapp.com/hovers')
 
     // Verify the page header is "Hovers".
-    const header = await browser.$('h3=Hovers')
-    const actualHeaderTitle = await header.getText()
     const expectedHeaderTitle = 'Hovers'
-    assert.equal(actualHeaderTitle, expectedHeaderTitle, 'Page header should be "Hovers"')
+    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm the description text is “Hover over the image for additional information”.
     const expectedDescription = 'Hover over the image for additional information'

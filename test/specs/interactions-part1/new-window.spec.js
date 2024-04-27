@@ -1,15 +1,15 @@
 import { assert } from 'chai'
 import { browser } from '@wdio/globals'
+import { getHeaderTitle } from '../../../src/help-functions.js'
 
 describe('New window exercise', () => {
   it('Should open new window', async () => {
     await browser.url('https://the-internet.herokuapp.com/windows')
 
     // Verify the page header is "Opening a new window".
-    const header = await browser.$('h3=Opening a new window')
-    const actualHeaderTitle = await header.getText()
     const expectedHeaderTitle = 'Opening a new window'
-    assert.equal(actualHeaderTitle, expectedHeaderTitle, 'Page header should be "Opening a new window"')
+    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Click the “Click Here” link and confirm a new tab opens
     await browser.$('=Click Here').click()
