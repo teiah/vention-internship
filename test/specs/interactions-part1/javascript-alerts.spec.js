@@ -2,8 +2,8 @@ import { assert } from 'chai'
 import { browser } from '@wdio/globals'
 import { getHeaderTitle, getDescriptionText } from '../../../src/help-functions.js'
 
-describe('Javascript Alerts', () => {
-  it('Alerts', async () => {
+describe('Javascript Alerts exercise', () => {
+  it('Should interact with alerts', async () => {
     await browser.url('https://the-internet.herokuapp.com/javascript_alerts')
 
     // Verify the page header is "JavaScript Alerts".

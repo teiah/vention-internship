@@ -2,8 +2,8 @@ import { assert } from 'chai'
 import { browser } from '@wdio/globals'
 import { getHeaderTitle } from '../../../src/help-functions.js'
 
-describe('Add/Remove Element', () => {
-  it('Header is Add/Remove element', async () => {
+describe('Add/Remove Element exercise', () => {
+  it('Should Add/Remove element', async () => {
     await browser.url('https://the-internet.herokuapp.com/add_remove_elements/')
 
     // Verify the page header is "Add/Remove Elements"
