@@ -7,3 +7,8 @@ export async function getDescriptionText(expectedDescription) {
   const description = await browser.$(`p=${expectedDescription}`)
   return description.getText()
 }
+
+export async function getElementText(locator) {
+  const element = await browser.$(locator)
+  return element.getText()
+}
