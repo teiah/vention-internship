@@ -1,3 +1,5 @@
+import './global-setup.js'
+
 export const config = {
   //
   // ====================
@@ -21,6 +23,12 @@ export const config = {
   // of the config file unless it's absolute.
   //
   specs: ['./test/specs/**/*.js'],
+  before: async function () {
+    // Execute the global setup file before running tests
+    const { setup } = await import('./global-setup.js')
+    setup()
+  },
+
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -130,6 +138,12 @@ export const config = {
   mochaOpts: {
     ui: 'bdd',
     timeout: 60000,
+  },
+
+  selectors: {
+    addRemoveElementHeader: 'h3=Add/Remove Elements',
+    addElementButton: 'button=Add Element',
+    deleteElementButton: 'button=Delete',
   },
 
   //
