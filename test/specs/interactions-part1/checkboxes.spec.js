@@ -1,45 +1,38 @@
 import { assert } from 'chai'
-import { browser } from '@wdio/globals'
-import { getHeaderTitle } from '../../../src/help-functions.js'
+import { CheckboxesPage } from '../../pageobjects/checkboxes.page.js'
 
-describe('Checkboxes exercise', () => {
-  it('Should check/uncheck boxes', async () => {
+describe('Checkboxes exercise', function () {
+  it('Should check/uncheck boxes', async function () {
     await browser.url('https://the-internet.herokuapp.com/checkboxes')
+    const checkboxPage = new CheckboxesPage()
 
     // Verify the page header is "Checkboxes".
     const expectedHeaderTitle = 'Checkboxes'
-    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    await checkboxPage.pageHeader.isDisplayed()
+    const actualHeaderTitle = await checkboxPage.pageHeader.getText()
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that checkbox 1 and checkbox 2 are present, checkbox 1 is unchecked and checkbox 2 is checked.
-    const checkbox1 = await browser.$('//form/input[1]')
-    let isDisplayed = await checkbox1.waitForDisplayed()
-    assert.isTrue(isDisplayed, 'Checkbox 1 should be displayed')
-    let isChecked = await checkbox1.isSelected()
-    assert.equal(isChecked, false)
+    assert.isTrue(await checkboxPage.checkbox1.isDisplayed(), 'Checkbox 1 should be displayed')
+    assert.isFalse(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be initially unchecked')
 
-    const checkbox2 = await browser.$('//form/input[2]')
-    isDisplayed = await checkbox2.waitForDisplayed()
-    assert.isTrue(isDisplayed, 'Checkbox 2 should be displayed')
-    isChecked = await checkbox2.isSelected()
-    assert.equal(isChecked, true)
+    assert.isTrue(await checkboxPage.checkbox2.isDisplayed(), 'Checkbox 2 should be displayed')
+    assert.isTrue(await checkboxPage.checkbox2.isSelected(), 'Checkbox 2 should be initially checked')
 
     // Click checkbox 1 and confirm it is checked.
-    checkbox1.click()
-    isChecked = await checkbox1.isSelected()
-    assert.equal(isChecked, true)
+    checkboxPage.checkbox1.waitForClickable()
+    checkboxPage.checkbox1.click()
+    assert.isTrue(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be checked after first click')
 
     // Click checkbox 1 again to ensure it is unchecked.
-    checkbox1.click()
-    isChecked = await checkbox1.isSelected()
-    assert.equal(isChecked, false)
+    checkboxPage.checkbox1.waitForClickable()
+    checkboxPage.checkbox1.click()
+    assert.isFalse(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be unchecked after second click')
 
     // Click checkbox 2 again to confirm that both checkboxes are now unchecked.
-    checkbox1.click()
-    checkbox2.click()
-    isChecked = await checkbox1.isSelected()
-    assert.equal(isChecked, false)
-    isChecked = await checkbox2.isSelected()
-    assert.equal(isChecked, false)
+    checkboxPage.checkbox2.waitForClickable()
+    checkboxPage.checkbox2.click()
+    assert.isFalse(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be unchecked in the end')
+    assert.isFalse(await checkboxPage.checkbox2.isSelected(), 'Checkbox 2 should be unchecked in the end')
   })
 })
