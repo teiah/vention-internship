@@ -1,5 +1,5 @@
 {
-  "plugins": ["flowtype"],
+  "plugins": ["flowtype", "mocha", "wdio"],
   "env": {
     "node": true,
     "mocha": true
@@ -11,10 +11,16 @@
   "globals": {
     "browser": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:mocha/recommended", "plugin:wdio/recommended"],
   "rules": {
     "no-unused-vars": "error",
-    "semi-spacing": ["error", { "before": false, "after": true }],
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "array-bracket-spacing": "error",
     "object-curly-spacing": ["error", "always"],
     "no-useless-concat": "error",
@@ -33,6 +39,13 @@
         "allowTemplateLiterals": true
       }
     ],
-    "padding-line-between-statements": ["error", { "blankLine": "always", "prev": ["*"], "next": ["class"] }]
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": ["*"],
+        "next": ["class"]
+      }
+    ]
   }
 }
