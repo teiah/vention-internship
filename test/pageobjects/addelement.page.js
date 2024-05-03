@@ -10,4 +10,8 @@ export class AddElementPage {
   get deleteElementButton() {
     return $('button=Delete')
   }
+
+  get deleteElementButtons() {
+    return $$('button=Delete')
+  }
 }
