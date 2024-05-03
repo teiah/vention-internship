@@ -1,63 +1,59 @@
+import { HoversPage } from '../../pageobjects/hovers.page.js'
+import { UserProfile } from '../../pageobjects/user-profile.page.js'
 import { assert } from 'chai'
-import { browser } from '@wdio/globals'
-import { getHeaderTitle, getDescriptionText } from '../../../src/help-functions.js'
-
-describe('Hover exercise', () => {
-  it('Should hover over elements', async () => {
+describe('Hover exercise', function () {
+  it('Should hover over elements', async function () {
     await browser.url('https://the-internet.herokuapp.com/hovers')
+    const hoversPage = new HoversPage()
 
     // Verify the page header is "Hovers".
     const expectedHeaderTitle = 'Hovers'
-    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    await hoversPage.pageHeader.isDisplayed()
+    const actualHeaderTitle = await hoversPage.pageHeader.getText()
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm the description text is “Hover over the image for additional information”.
     const expectedDescription = 'Hover over the image for additional information'
-    const actualDescription = await getDescriptionText(expectedDescription)
+    await hoversPage.description.isDisplayed()
+    const actualDescription = await hoversPage.description.getText()
     assert.equal(actualDescription, expectedDescription, `Page header should be ${expectedDescription}`)
 
     // Hover over Image #1 and validate the name "user1" and the "View Profile" link are displayed.
-    await moveToElement('//div[@class="figure"][1]/img')
-    await assertUsername('user1')
-    await assertProfileLink('View profile')
+    await moveToElement(hoversPage.getImageByNumber('1'))
+    await assertElementIsDisplayed(hoversPage.getUserByName('user1'))
+    await assertElementIsDisplayed(hoversPage.viewProfileLink)
 
     // Hover over Image #2 to confirm the name "user2" and the "View Profile" link appear.
-    await moveToElement('//div[@class="figure"][2]/img')
-    await assertUsername('user2')
-    await assertProfileLink('View profile')
+    await moveToElement(hoversPage.getImageByNumber('2'))
+    await assertElementIsDisplayed(hoversPage.getUserByName('user2'))
+    await assertElementIsDisplayed(hoversPage.viewProfileLink)
 
     // Hover over Image #3 to confirm the name "user3" and the "View Profile" link appear.
-    await moveToElement('//div[@class="figure"][3]/img')
-    await assertUsername('user3')
-    await assertProfileLink('View profile')
+    await moveToElement(hoversPage.getImageByNumber('3'))
+    await assertElementIsDisplayed(hoversPage.getUserByName('user3'))
+    await assertElementIsDisplayed(hoversPage.viewProfileLink)
 
     // Click the "View Profile" link for user 3 and ensure that the URL changes to https://the-internet.herokuapp.com/users/3.
-    const viewProfileLink = await browser.$('=View profile')
-    await viewProfileLink.click()
+    await hoversPage.viewProfileLink.waitForClickable()
+    await hoversPage.viewProfileLink.click()
     const expectedUrl = 'https://the-internet.herokuapp.com/users/3'
     const currentBrowser = await browser.getUrl()
     assert.equal(currentBrowser, expectedUrl)
 
     // Confirm the page displays “Not Found”.
-    const header1 = await browser.$('h1=Not Found')
-    const actualHeader = await header1.getText()
+    const userProfile = new UserProfile()
+    await userProfile.pageHeader.isDisplayed()
+    const actualHeader = await userProfile.pageHeader.getText()
     const expectedHeader = 'Not Found'
     assert.equal(actualHeader, expectedHeader, 'Page header should be "Hovers"')
   })
 })
-async function moveToElement(selector) {
-  const element = await browser.$(selector)
+async function moveToElement(element) {
+  await element.isDisplayed()
   await element.moveTo()
 }
 
-async function assertUsername(username) {
-  const userElement = await browser.$(`h5=name: ${username}`)
-  await userElement.waitForDisplayed()
-  assert.isTrue(await userElement.isDisplayed(), 'User should be displayed')
-}
-
-async function assertProfileLink(linkText) {
-  const viewProfileLink = await browser.$(`=${linkText}`)
-  await viewProfileLink.waitForDisplayed()
-  assert.isTrue(await viewProfileLink.isDisplayed(), `"${linkText}" link should be displayed`)
+async function assertElementIsDisplayed(element) {
+  await element.waitForDisplayed()
+  assert.isTrue(await element.isDisplayed(), 'Element should be displayed')
 }
