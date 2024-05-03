@@ -1,18 +1,21 @@
+import { NewWindow } from '../../pageobjects/new-window.page.js'
+import { NewTab } from '../../pageobjects/new-tab.page.js'
 import { assert } from 'chai'
-import { browser } from '@wdio/globals'
-import { getHeaderTitle } from '../../../src/help-functions.js'
 
-describe('New window exercise', () => {
-  it('Should open new window', async () => {
+describe('New window exercise', function () {
+  it('Should open new window', async function () {
     await browser.url('https://the-internet.herokuapp.com/windows')
+    const newWindowPage = new NewWindow()
 
     // Verify the page header is "Opening a new window".
     const expectedHeaderTitle = 'Opening a new window'
-    const actualHeaderTitle = await getHeaderTitle(expectedHeaderTitle)
+    await newWindowPage.pageHeader.isDisplayed()
+    const actualHeaderTitle = await newWindowPage.pageHeader.getText()
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Click the “Click Here” link and confirm a new tab opens
-    await browser.$('=Click Here').click()
+    await newWindowPage.clickHereLink.waitForClickable()
+    await newWindowPage.clickHereLink.click()
     const windowHandles = await browser.getWindowHandles()
     const numberOfTabsOpened = windowHandles.length
     assert.equal(numberOfTabsOpened, 2)
@@ -24,8 +27,9 @@ describe('New window exercise', () => {
     assert.equal(await browser.getUrl(), expectedUrl)
 
     // Ensure the page text in the new tab is “New Window”
-    const newHeader = await browser.$('h3=New Window')
-    const actualNewHeader = await newHeader.getText()
+    const newTab = new NewTab()
+    await newTab.pageHeader.isDisplayed()
+    const actualNewHeader = await newTab.pageHeader.getText()
     const expectedNewHeader = 'New Window'
     assert.equal(actualNewHeader, expectedNewHeader, 'Page header should be "New Window"')
   })
