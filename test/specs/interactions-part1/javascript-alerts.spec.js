@@ -1,4 +1,5 @@
 import { AlertsPage } from '../../pageobjects/alerts.page.js'
+import * as utils from '../../../src/help-functions.js'
 import { assert } from 'chai'
 
 describe('Javascript Alerts exercise', function () {
@@ -8,13 +9,12 @@ describe('Javascript Alerts exercise', function () {
 
     // Verify the page header is "JavaScript Alerts".
     const expectedHeaderTitle = 'JavaScript Alerts'
-    await alertsPage.pageHeader.isDisplayed()
-    const actualHeaderTitle = await alertsPage.pageHeader.getText()
+    const actualHeaderTitle = await utils.getTextFromElement(alertsPage.pageHeader)
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that the description text is “Here are some examples of different JavaScript alerts which can be troublesome for automation”.
     const expectedDescription = 'Here are some examples of different JavaScript alerts which can be troublesome for automation'
-    const actualDescription = await alertsPage.description.getText()
+    const actualDescription = await utils.getTextFromElement(alertsPage.description)
     assert.equal(actualDescription, expectedDescription, `Page header should be "${expectedDescription}"`)
 
     // Validate the presence of the following buttons: "Click for JS Alert", "Click for JS Confirm", and "Click for JS Prompt".

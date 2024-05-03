@@ -1,5 +1,6 @@
 import { NewWindow } from '../../pageobjects/new-window.page.js'
 import { NewTab } from '../../pageobjects/new-tab.page.js'
+import * as utils from '../../../src/help-functions.js'
 import { assert } from 'chai'
 
 describe('New window exercise', function () {
@@ -9,8 +10,7 @@ describe('New window exercise', function () {
 
     // Verify the page header is "Opening a new window".
     const expectedHeaderTitle = 'Opening a new window'
-    await newWindowPage.pageHeader.isDisplayed()
-    const actualHeaderTitle = await newWindowPage.pageHeader.getText()
+    const actualHeaderTitle = await utils.getTextFromElement(newWindowPage.pageHeader)
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Click the “Click Here” link and confirm a new tab opens

@@ -1,5 +1,6 @@
 import { HoversPage } from '../../pageobjects/hovers.page.js'
 import { UserProfile } from '../../pageobjects/user-profile.page.js'
+import * as utils from '../../../src/help-functions.js'
 import { assert } from 'chai'
 describe('Hover exercise', function () {
   it('Should hover over elements', async function () {
@@ -8,14 +9,12 @@ describe('Hover exercise', function () {
 
     // Verify the page header is "Hovers".
     const expectedHeaderTitle = 'Hovers'
-    await hoversPage.pageHeader.isDisplayed()
-    const actualHeaderTitle = await hoversPage.pageHeader.getText()
+    const actualHeaderTitle = await utils.getTextFromElement(hoversPage.pageHeader)
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm the description text is “Hover over the image for additional information”.
     const expectedDescription = 'Hover over the image for additional information'
-    await hoversPage.description.isDisplayed()
-    const actualDescription = await hoversPage.description.getText()
+    const actualDescription = await utils.getTextFromElement(hoversPage.description)
     assert.equal(actualDescription, expectedDescription, `Page header should be ${expectedDescription}`)
 
     // Hover over Image #1 and validate the name "user1" and the "View Profile" link are displayed.

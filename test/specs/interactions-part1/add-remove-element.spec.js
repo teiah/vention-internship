@@ -1,4 +1,5 @@
 import { AddElementPage } from '../../pageobjects/addelement.page.js'
+import * as utils from '../../../src/help-functions.js'
 import { assert } from 'chai'
 
 describe('Add/Remove Element exercise', function () {
@@ -8,8 +9,7 @@ describe('Add/Remove Element exercise', function () {
 
     // Verify the page header is "Add/Remove Elements"
     const expectedHeaderTitle = 'Add/Remove Elements'
-    addElementPage.pageHeader.isDisplayed()
-    const actualHeaderTitle = await addElementPage.pageHeader.getText()
+    const actualHeaderTitle = await utils.getTextFromElement(addElementPage.pageHeader)
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm the "Add Element" button is present, while the "Delete" button is not

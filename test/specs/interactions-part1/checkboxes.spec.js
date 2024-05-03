@@ -1,4 +1,5 @@
 import { assert } from 'chai'
+import * as utils from '../../../src/help-functions.js'
 import { CheckboxesPage } from '../../pageobjects/checkboxes.page.js'
 
 describe('Checkboxes exercise', function () {
@@ -8,8 +9,7 @@ describe('Checkboxes exercise', function () {
 
     // Verify the page header is "Checkboxes".
     const expectedHeaderTitle = 'Checkboxes'
-    await checkboxPage.pageHeader.isDisplayed()
-    const actualHeaderTitle = await checkboxPage.pageHeader.getText()
+    const actualHeaderTitle = await utils.getTextFromElement(checkboxPage.pageHeader)
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that checkbox 1 and checkbox 2 are present, checkbox 1 is unchecked and checkbox 2 is checked.
