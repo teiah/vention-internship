@@ -18,10 +18,9 @@ describe('Add/Remove Element exercise', function () {
     assert.isFalse(await addElementPage.deleteElementButton.isExisting(), 'Delete button should not exist on the page')
 
     // Click the "Add Element" button 10 times.
-    await addElementPage.addElementButton.waitForClickable()
     const numberOfExecutions = 10
     for (let i = 0; i < numberOfExecutions; i++) {
-      await addElementPage.addElementButton.click()
+      await utils.clickElement(addElementPage.addElementButton)
     }
 
     // Assert that there are 10 delete buttons displayed
@@ -30,8 +29,7 @@ describe('Add/Remove Element exercise', function () {
 
     // Click each "Delete" button and confirm that the number of buttons reduces by one each time.
     for (let i = 0; i < deleteButtons.length; i++) {
-      await deleteButtons[i].waitForClickable()
-      await deleteButtons[i].click()
+      await utils.clickElement(deleteButtons[i])
       const remainingDeleteButtons = await addElementPage.deleteElementButtons
       assert.strictEqual(
         remainingDeleteButtons.length,

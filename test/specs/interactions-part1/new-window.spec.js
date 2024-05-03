@@ -14,8 +14,7 @@ describe('New window exercise', function () {
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Click the “Click Here” link and confirm a new tab opens
-    await newWindowPage.clickHereLink.waitForClickable()
-    await newWindowPage.clickHereLink.click()
+    await utils.clickElement(newWindowPage.clickHereLink)
     const windowHandles = await browser.getWindowHandles()
     const numberOfTabsOpened = windowHandles.length
     assert.equal(numberOfTabsOpened, 2)
@@ -28,8 +27,7 @@ describe('New window exercise', function () {
 
     // Ensure the page text in the new tab is “New Window”
     const newTab = new NewTab()
-    await newTab.pageHeader.isDisplayed()
-    const actualNewHeader = await newTab.pageHeader.getText()
+    const actualNewHeader = await utils.getTextFromElement(newTab.pageHeader)
     const expectedNewHeader = 'New Window'
     assert.equal(actualNewHeader, expectedNewHeader, 'Page header should be "New Window"')
   })

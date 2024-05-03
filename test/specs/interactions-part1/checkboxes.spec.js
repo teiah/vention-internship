@@ -20,18 +20,15 @@ describe('Checkboxes exercise', function () {
     assert.isTrue(await checkboxPage.checkbox2.isSelected(), 'Checkbox 2 should be initially checked')
 
     // Click checkbox 1 and confirm it is checked.
-    checkboxPage.checkbox1.waitForClickable()
-    checkboxPage.checkbox1.click()
+    await utils.clickElement(checkboxPage.checkbox1)
     assert.isTrue(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be checked after first click')
 
     // Click checkbox 1 again to ensure it is unchecked.
-    checkboxPage.checkbox1.waitForClickable()
-    checkboxPage.checkbox1.click()
+    await utils.clickElement(checkboxPage.checkbox1)
     assert.isFalse(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be unchecked after second click')
 
     // Click checkbox 2 again to confirm that both checkboxes are now unchecked.
-    checkboxPage.checkbox2.waitForClickable()
-    checkboxPage.checkbox2.click()
+    await utils.clickElement(checkboxPage.checkbox2)
     assert.isFalse(await checkboxPage.checkbox1.isSelected(), 'Checkbox 1 should be unchecked in the end')
     assert.isFalse(await checkboxPage.checkbox2.isSelected(), 'Checkbox 2 should be unchecked in the end')
   })

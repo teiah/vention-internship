@@ -33,8 +33,7 @@ describe('Hover exercise', function () {
     await assertElementIsDisplayed(hoversPage.viewProfileLink)
 
     // Click the "View Profile" link for user 3 and ensure that the URL changes to https://the-internet.herokuapp.com/users/3.
-    await hoversPage.viewProfileLink.waitForClickable()
-    await hoversPage.viewProfileLink.click()
+    await utils.clickElement(hoversPage.viewProfileLink)
     const expectedUrl = 'https://the-internet.herokuapp.com/users/3'
     const currentBrowser = await browser.getUrl()
     assert.equal(currentBrowser, expectedUrl)

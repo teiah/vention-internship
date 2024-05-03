@@ -24,8 +24,7 @@ describe('Javascript Alerts exercise', function () {
 
     /* Click "Click for JS Alert" and confirm the alert text is “I am a JS Alert”.
     Click "OK" and ensure the page displays “You successfully clicked an alert”. */
-    await alertsPage.jSAlertButton.waitForClickable()
-    await alertsPage.jSAlertButton.click()
+    await utils.clickElement(alertsPage.jSAlertButton)
     const expectedAlertText = 'I am a JS Alert'
     await verifyAlertText(expectedAlertText)
     await browser.acceptAlert()
@@ -34,8 +33,7 @@ describe('Javascript Alerts exercise', function () {
 
     /* Click "Click for JS Confirm", confirm the alert text is “I am a JS Confirm”, click "Cancel",
     // and ensure the green text “You clicked: Cancel” appears on the page. */
-    await alertsPage.jSConfirmButton.waitForClickable()
-    await alertsPage.jSConfirmButton.click()
+    await utils.clickElement(alertsPage.jSConfirmButton)
     const expectedConfirmText = 'I am a JS Confirm'
     await verifyAlertText(expectedConfirmText)
     await browser.dismissAlert()
@@ -44,8 +42,7 @@ describe('Javascript Alerts exercise', function () {
 
     /* Click "Click for JS Prompt", verify the alert text is “I am a JS prompt”, enter text “Hello from test”,
     // click "OK", and confirm the page displays “You entered: Hello from test”.*/
-    await alertsPage.jSPromptButton.waitForClickable()
-    await alertsPage.jSPromptButton.click()
+    await utils.clickElement(alertsPage.jSPromptButton)
     const expectedPromptText = 'I am a JS prompt'
     await verifyAlertText(expectedPromptText)
     await browser.sendAlertText('Hello from test')
