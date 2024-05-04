@@ -1,54 +1,52 @@
 import { AlertsPage } from '../../pageobjects/alerts.page.js'
-import * as utils from '../../../src/help-functions.js'
 import { assert } from 'chai'
 
 describe('Javascript Alerts exercise', function () {
   it('Should interact with alerts', async function () {
-    await browser.url('https://the-internet.herokuapp.com/javascript_alerts')
-    const alertsPage = new AlertsPage()
+    await AlertsPage.open()
 
     // Verify the page header is "JavaScript Alerts".
     const expectedHeaderTitle = 'JavaScript Alerts'
-    const actualHeaderTitle = await utils.getTextFromElement(alertsPage.pageHeader)
+    const actualHeaderTitle = await AlertsPage.pageHeader.getText()
     assert.equal(actualHeaderTitle, expectedHeaderTitle, `Page header should be "${expectedHeaderTitle}"`)
 
     // Confirm that the description text is “Here are some examples of different JavaScript alerts which can be troublesome for automation”.
     const expectedDescription = 'Here are some examples of different JavaScript alerts which can be troublesome for automation'
-    const actualDescription = await utils.getTextFromElement(alertsPage.description)
+    const actualDescription = await AlertsPage.description.getText()
     assert.equal(actualDescription, expectedDescription, `Page header should be "${expectedDescription}"`)
 
     // Validate the presence of the following buttons: "Click for JS Alert", "Click for JS Confirm", and "Click for JS Prompt".
-    assert.isTrue(await alertsPage.jSAlertButton.isDisplayed(), '"Click for JS Alert" button should be displayed')
-    assert.isTrue(await alertsPage.jSConfirmButton.isDisplayed(), '"Click for JS Confirm" button should be displayed')
-    assert.isTrue(await alertsPage.jSPromptButton.isDisplayed(), '"Click for JS Prompt" button should be displayed')
+    assert.isTrue(await AlertsPage.jSAlertButton.isDisplayed(), '"Click for JS Alert" button should be displayed')
+    assert.isTrue(await AlertsPage.jSConfirmButton.isDisplayed(), '"Click for JS Confirm" button should be displayed')
+    assert.isTrue(await AlertsPage.jSPromptButton.isDisplayed(), '"Click for JS Prompt" button should be displayed')
 
     /* Click "Click for JS Alert" and confirm the alert text is “I am a JS Alert”.
     Click "OK" and ensure the page displays “You successfully clicked an alert”. */
-    await utils.clickElement(alertsPage.jSAlertButton)
+    await AlertsPage.jSAlertButton.click()
     const expectedAlertText = 'I am a JS Alert'
     await verifyAlertText(expectedAlertText)
     await browser.acceptAlert()
-    await alertsPage.jSAlertMessage.waitForDisplayed()
-    assert.isTrue(await alertsPage.jSAlertMessage.isDisplayed(), 'Result message should be displayed')
+    await AlertsPage.jSAlertMessage.waitForDisplayed()
+    assert.isTrue(await AlertsPage.jSAlertMessage.isDisplayed(), 'Result message should be displayed')
 
     /* Click "Click for JS Confirm", confirm the alert text is “I am a JS Confirm”, click "Cancel",
     // and ensure the green text “You clicked: Cancel” appears on the page. */
-    await utils.clickElement(alertsPage.jSConfirmButton)
+    await AlertsPage.jSConfirmButton.click()
     const expectedConfirmText = 'I am a JS Confirm'
     await verifyAlertText(expectedConfirmText)
     await browser.dismissAlert()
-    await alertsPage.jSConfirmMessage.waitForDisplayed()
-    assert.isTrue(await alertsPage.jSConfirmMessage.isDisplayed(), 'Result message should be displayed')
+    await AlertsPage.jSConfirmMessage.waitForDisplayed()
+    assert.isTrue(await AlertsPage.jSConfirmMessage.isDisplayed(), 'Result message should be displayed')
 
     /* Click "Click for JS Prompt", verify the alert text is “I am a JS prompt”, enter text “Hello from test”,
     // click "OK", and confirm the page displays “You entered: Hello from test”.*/
-    await utils.clickElement(alertsPage.jSPromptButton)
+    await AlertsPage.jSPromptButton.click()
     const expectedPromptText = 'I am a JS prompt'
     await verifyAlertText(expectedPromptText)
     await browser.sendAlertText('Hello from test')
     await browser.acceptAlert()
-    await alertsPage.jSPromptMessage.waitForDisplayed()
-    assert.isTrue(await alertsPage.jSPromptMessage.isDisplayed(), 'Result message should be displayed')
+    await AlertsPage.jSPromptMessage.waitForDisplayed()
+    assert.isTrue(await AlertsPage.jSPromptMessage.isDisplayed(), 'Result message should be displayed')
   })
 })
 

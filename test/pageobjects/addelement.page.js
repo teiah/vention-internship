@@ -1,4 +1,10 @@
-export class AddElementPage {
+import { Page } from './page.js'
+
+class AddElementPage extends Page {
+  open() {
+    return super.open('https://the-internet.herokuapp.com/add_remove_elements/')
+  }
+
   get pageHeader() {
     return $('h3=Add/Remove Elements')
   }
@@ -15,3 +21,4 @@ export class AddElementPage {
     return $$('button=Delete')
   }
 }
+export default new AddElementPage()

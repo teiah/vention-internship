@@ -1,4 +1,10 @@
-export class CheckboxesPage {
+import { Page } from './page.js'
+
+class CheckboxesPage extends Page {
+  open() {
+    return super.open('https://the-internet.herokuapp.com/checkboxes')
+  }
+
   get pageHeader() {
     return $('h3=Checkboxes')
   }
@@ -11,3 +17,4 @@ export class CheckboxesPage {
     return $('//form/input[2]')
   }
 }
+export default new CheckboxesPage()

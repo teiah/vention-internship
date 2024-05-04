@@ -1,4 +1,10 @@
-export class HoversPage {
+import { Page } from './page.js'
+
+class HoversPage extends Page {
+  open() {
+    return super.open('https://the-internet.herokuapp.com/hovers')
+  }
+
   get pageHeader() {
     return $('h3=Hovers')
   }
@@ -7,15 +13,24 @@ export class HoversPage {
     return $('p=Hover over the image for additional information')
   }
 
-  get viewProfileLink() {
-    return $('=View profile')
+  get profileContainersXpath() {
+    return '//div[@class="figure"]'
   }
 
-  getImageByNumber(number) {
-    return $(`//div[@class="figure"][${number}]/img`)
+  get profileContainers() {
+    return $$(this.profileContainersXpath)
   }
 
-  getUserByName(name) {
-    return $(`h5=name: ${name}`)
+  getUserNameByIndex(index) {
+    return $(`${this.profileContainersXpath}[${index}]//h5`)
+  }
+
+  getViewProfileLink(index) {
+    return $(`${this.profileContainersXpath}[${index}]//a`)
+  }
+
+  getImageByIndex(index) {
+    return $(`${this.profileContainersXpath}[${index}]//img`)
   }
 }
+export default new HoversPage()

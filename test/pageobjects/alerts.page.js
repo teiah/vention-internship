@@ -1,4 +1,10 @@
-export class AlertsPage {
+import { Page } from './page.js'
+
+class AlertsPage extends Page {
+  open() {
+    return super.open('https://the-internet.herokuapp.com/javascript_alerts')
+  }
+
   get pageHeader() {
     return $('h3=JavaScript Alerts')
   }
@@ -31,3 +37,4 @@ export class AlertsPage {
     return $('p=You entered: Hello from test')
   }
 }
+export default new AlertsPage()
