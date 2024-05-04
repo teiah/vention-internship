@@ -1,4 +1,4 @@
-import { AlertsPage } from '../../pageobjects/alerts.page.js'
+import AlertsPage from '../../pageobjects/alerts.page.js'
 import { assert } from 'chai'
 
 describe('Javascript Alerts exercise', function () {

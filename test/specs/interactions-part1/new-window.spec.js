@@ -1,5 +1,5 @@
-import { NewWindowPage } from '../../pageobjects/new-window.page.js'
-import { NewTab } from '../../pageobjects/new-tab.page.js'
+import NewWindowPage from '../../pageobjects/new-window.page.js'
+import NewTab from '../../pageobjects/new-tab.page.js'
 import { assert } from 'chai'
 
 describe('New window exercise', function () {
