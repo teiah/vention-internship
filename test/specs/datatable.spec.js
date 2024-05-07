@@ -1,11 +1,11 @@
 import { expect } from '@wdio/globals'
 
-describe('Identify any cell with email and column name', () => {
-  before(async () => {
+describe('Identify any cell with email and column name', function () {
+  before(async function () {
     await browser.url('https://the-internet.herokuapp.com/tables')
   })
 
-  it('should verify cell for specific email with column name', async () => {
+  it('should verify cell for specific email with column name', async function () {
     const userData = [
       { 'Last Name': 'Doe', 'First Name': 'Jason', Email: 'jdoe@hotmail.com', 'Web Site': 'http://www.jdoe.com', Due: '$100.00' },
       { 'Last Name': 'Smith', 'First Name': 'John', Email: 'jsmith@gmail.com', 'Web Site': 'http://www.jsmith.com', Due: '$50.00' },
