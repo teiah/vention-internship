@@ -1,3 +1,10 @@
+import path from 'node:path'
+import url from 'node:url'
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+
+export const defaultDownloadPath = path.join(__dirname, 'downloads')
+
 export const config = {
   //
   // ====================
@@ -50,6 +57,13 @@ export const config = {
   capabilities: [
     {
       browserName: 'chrome',
+      'goog:chromeOptions': {
+        prefs: {
+          download: {
+            default_directory: defaultDownloadPath,
+          },
+        },
+      },
     },
   ],
 
