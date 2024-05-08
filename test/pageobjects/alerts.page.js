@@ -5,14 +5,6 @@ class AlertsPage extends Page {
     return super.open('https://the-internet.herokuapp.com/javascript_alerts')
   }
 
-  get pageHeader() {
-    return $('h3=JavaScript Alerts')
-  }
-
-  get description() {
-    return $('p=Here are some examples of different JavaScript alerts which can be troublesome for automation')
-  }
-
   get jSAlertButton() {
     return $('button*=JS Alert')
   }

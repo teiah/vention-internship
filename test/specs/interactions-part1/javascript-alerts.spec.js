@@ -12,7 +12,7 @@ describe('Javascript Alerts exercise', function () {
 
     // Confirm that the description text is “Here are some examples of different JavaScript alerts which can be troublesome for automation”.
     const expectedDescription = 'Here are some examples of different JavaScript alerts which can be troublesome for automation'
-    const actualDescription = await AlertsPage.description.getText()
+    const actualDescription = await AlertsPage.pageDescription.getText()
     assert.equal(actualDescription, expectedDescription, `Page header should be "${expectedDescription}"`)
 
     // Validate the presence of the following buttons: "Click for JS Alert", "Click for JS Confirm", and "Click for JS Prompt".

@@ -13,7 +13,7 @@ describe('Hover exercise', function () {
 
     // Confirm the description text is “Hover over the image for additional information”.
     const expectedDescription = 'Hover over the image for additional information'
-    const actualDescription = await HoversPage.description.getText()
+    const actualDescription = await HoversPage.pageDescription.getText()
     assert.equal(actualDescription, expectedDescription, `Page header should be ${expectedDescription}`)
 
     // Hover over each image and validate the name and the "View Profile" link are displayed.

@@ -5,10 +5,6 @@ class CheckboxesPage extends Page {
     return super.open('https://the-internet.herokuapp.com/checkboxes')
   }
 
-  get pageHeader() {
-    return $('h3=Checkboxes')
-  }
-
   get checkbox1() {
     return $('//form/input[1]')
   }

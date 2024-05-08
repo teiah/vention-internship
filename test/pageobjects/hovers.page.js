@@ -5,14 +5,6 @@ class HoversPage extends Page {
     return super.open('https://the-internet.herokuapp.com/hovers')
   }
 
-  get pageHeader() {
-    return $('h3=Hovers')
-  }
-
-  get description() {
-    return $('p=Hover over the image for additional information')
-  }
-
   get profileContainersXpath() {
     return '//div[@class="figure"]'
   }

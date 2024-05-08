@@ -5,10 +5,6 @@ class NewWindowPage extends Page {
     return super.open('https://the-internet.herokuapp.com/windows')
   }
 
-  get pageHeader() {
-    return $('h3=Opening a new window')
-  }
-
   get clickHereLink() {
     return $('=Click Here')
   }
