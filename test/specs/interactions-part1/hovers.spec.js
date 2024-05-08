@@ -26,8 +26,8 @@ describe('Hover exercise', function () {
     // Click the "View Profile" link for user 3 and ensure that the URL changes to https://the-internet.herokuapp.com/users/3.
     await HoversPage.getViewProfileLink(3).click()
     const expectedUrl = 'https://the-internet.herokuapp.com/users/3'
-    const currentBrowser = await browser.getUrl()
-    assert.equal(currentBrowser, expectedUrl)
+    const currentUrl = await browser.getUrl()
+    assert.equal(currentUrl, expectedUrl, `URL should be ${expectedUrl}`)
 
     // Confirm the page displays “Not Found”.
     const actualHeader = await UserProfile.pageHeader.getText()

@@ -15,13 +15,12 @@ describe('New window exercise', function () {
     await NewWindowPage.clickHereLink.click()
     const windowHandles = await browser.getWindowHandles()
     const numberOfTabsOpened = windowHandles.length
-    assert.equal(numberOfTabsOpened, 2)
-    console.log(windowHandles)
+    assert.equal(numberOfTabsOpened, 2, 'Unexpexted number of tabs opened')
 
     // Validate that the URL in the new tab is https://the-internet.herokuapp.com/windows/new
     await browser.switchToWindow(windowHandles[1])
     const expectedUrl = 'https://the-internet.herokuapp.com/windows/new'
-    assert.equal(await browser.getUrl(), expectedUrl)
+    assert.equal(await browser.getUrl(), expectedUrl, `URL should be ${expectedUrl}`)
 
     // Ensure the page text in the new tab is “New Window”
     const actualNewHeader = await NewTab.pageHeader.getText()
