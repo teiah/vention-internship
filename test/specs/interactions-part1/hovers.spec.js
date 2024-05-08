@@ -17,7 +17,7 @@ describe('Hover exercise', function () {
     assert.equal(actualDescription, expectedDescription, `Page header should be ${expectedDescription}`)
 
     // Hover over each image and validate the name and the "View Profile" link are displayed.
-    for (let i = 1; i <= (await HoversPage.profileContainers.length); i++) {
+    for (let i = 1; i <= (await HoversPage.numberOfProfileContainers); i++) {
       await HoversPage.getImageByIndex(i).moveTo()
       assert.isTrue(await HoversPage.getUserNameByIndex(i).isDisplayed(), 'Username should be displayed')
       assert.isTrue(await HoversPage.getViewProfileLink(i).isDisplayed(), 'View Profile link should be displayed')

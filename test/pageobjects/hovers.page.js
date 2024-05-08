@@ -9,8 +9,8 @@ class HoversPage extends Page {
     return '//div[@class="figure"]'
   }
 
-  get profileContainers() {
-    return $$(this.profileContainersXpath)
+  get numberOfProfileContainers() {
+    return $$(this.profileContainersXpath).length
   }
 
   getUserNameByIndex(index) {
