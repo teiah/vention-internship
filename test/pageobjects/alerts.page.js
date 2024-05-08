@@ -25,16 +25,8 @@ class AlertsPage extends Page {
     return $('button*=JS Prompt')
   }
 
-  get jSAlertMessage() {
-    return $('p=You successfully clicked an alert')
-  }
-
-  get jSConfirmMessage() {
-    return $('p=You clicked: Cancel')
-  }
-
-  get jSPromptMessage() {
-    return $('p=You entered: Hello from test')
+  get resultMessage() {
+    return $('//p[@id="result"]')
   }
 }
 export default new AlertsPage()
