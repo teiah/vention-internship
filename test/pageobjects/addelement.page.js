@@ -17,8 +17,8 @@ class AddElementPage extends Page {
     return $('button=Delete')
   }
 
-  get deleteElementButtons() {
-    return $$('button=Delete')
+  get numberOfDeleteButtons() {
+    return $$('button=Delete').length
   }
 }
 export default new AddElementPage()

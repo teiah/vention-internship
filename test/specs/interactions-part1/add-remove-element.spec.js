@@ -22,15 +22,14 @@ describe('Add/Remove Element exercise', function () {
     }
 
     // Assert that there are 10 delete buttons displayed
-    const deleteButtons = await AddElementPage.deleteElementButtons
-    assert.strictEqual(deleteButtons.length, numberOfExecutions, `Expected ${numberOfExecutions} delete buttons to be displayed`)
+    const numberOfDeleteButtons = await AddElementPage.numberOfDeleteButtons
+    assert.strictEqual(numberOfDeleteButtons, numberOfExecutions, `Expected ${numberOfExecutions} delete buttons to be displayed`)
 
     // Click each "Delete" button and confirm that the number of buttons reduces by one each time.
-    for (let i = 0; i < deleteButtons.length; i++) {
-      await deleteButtons[i].click()
-      const remainingDeleteButtons = await AddElementPage.deleteElementButtons
+    for (let i = 0; i < numberOfDeleteButtons; i++) {
+      await AddElementPage.deleteElementButton.click()
       assert.strictEqual(
-        remainingDeleteButtons.length,
+        await AddElementPage.numberOfDeleteButtons,
         numberOfExecutions - i - 1,
         `Expected ${numberOfExecutions - i - 1} delete buttons remaining after clicking button number ${i + 1}`,
       )
