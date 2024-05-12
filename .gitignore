@@ -137,4 +137,5 @@ logs/
 
 # Ignore downloaded files
 downloads/**
+!.gitkeep
 .com.google.Chrome*
