@@ -5,6 +5,7 @@ import { assert } from 'chai'
 import { defaultDownloadPath } from '../../../wdio.conf.js'
 
 describe('File download exercise', function () {
+  let downloadPath
   it('Should download file', async function () {
     await DownloadFilePage.open()
 
@@ -18,16 +19,17 @@ describe('File download exercise', function () {
     // Verify the presence of the downloaded file in the file system.
     const href = await selectedElement.getAttribute('href')
     const filename = path.basename(href)
-    const downloadPath = path.join(defaultDownloadPath, filename)
+    downloadPath = path.join(defaultDownloadPath, filename)
     await browser.waitUntil(async () => existsSync(downloadPath), 10000)
-    const downloadFile = statSync(downloadPath)
+    const fileStats = statSync(downloadPath)
     assert.isTrue(existsSync(downloadPath), 'Download file does not exist')
-    assert.isAbove(downloadFile.size, 0, 'Downloaded file is empty')
-
-    // Clean up
+    assert.isAbove(fileStats.size, 0, 'Downloaded file is empty')
+  })
+  // Clean up
+  after(async function () {
     try {
-      if (existsSync(downloadPath)) {
-        unlinkSync(downloadPath)
+      if (await browser.call(async () => existsSync(downloadPath))) {
+        await browser.call(async () => unlinkSync(downloadPath))
       }
     } catch (err) {
       console.error(`Error deleting file: ${err.message}`)

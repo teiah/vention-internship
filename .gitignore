@@ -135,3 +135,6 @@ allure-results/
 # Ignore log4js log directory
 logs/
 
+# Ignore downloaded files
+downloads/**
+.com.google.Chrome*

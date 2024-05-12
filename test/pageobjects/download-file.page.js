@@ -6,12 +6,7 @@ class DownloadFilePage extends Page {
   }
 
   get safeElements() {
-    return $$(
-      `//a[@href[substring(., string-length(.) - string-length(".jpg") + 1) = ".jpg" 
-      or substring(., string-length(.) - string-length(".png") + 1) = ".png" 
-      or substring(., string-length(.) - string-length(".txt") + 1) = ".txt" 
-      or substring(., string-length(.) - string-length(".json") + 1) = ".json"]]`,
-    )
+    return $$('//a[contains("json.jpg.png.txt", substring(., string-length(.) - 3))]')
   }
 }
 export default new DownloadFilePage()
