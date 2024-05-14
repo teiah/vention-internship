@@ -3,6 +3,7 @@ import { existsSync, statSync, unlinkSync } from 'node:fs'
 import path from 'node:path'
 import { assert } from 'chai'
 import { defaultDownloadPath } from '../../../wdio.conf.js'
+import { Timeouts } from '../../../constants/timeouts.js'
 
 describe('File download exercise', function () {
   let downloadPath
@@ -20,7 +21,7 @@ describe('File download exercise', function () {
     const href = await selectedElement.getAttribute('href')
     const filename = path.basename(href)
     downloadPath = path.join(defaultDownloadPath, filename)
-    await browser.waitUntil(async () => existsSync(downloadPath), 10000)
+    await browser.waitUntil(async () => existsSync(downloadPath), Timeouts.DEFAULT_WAIT_TIMEOUT)
     const fileStats = statSync(downloadPath)
     assert.isTrue(existsSync(downloadPath), 'Download file does not exist')
     assert.isAbove(fileStats.size, 0, 'Downloaded file is empty')
