@@ -1,3 +1,5 @@
+import { Timeouts } from '../constants/timeouts.js'
+
 class BaseElement {
   constructor(name, selector) {
     this.name = name
@@ -8,20 +10,20 @@ class BaseElement {
     return await $(this.selector)
   }
 
-  async waitForExist(selector, timeout = 5000) {
-    await this.getElement().waitForExist({ timeout })
+  async waitForExist() {
+    await this.getElement().waitForExist(Timeouts.SHORT_TIMEOUT)
   }
 
-  async waitForDisplayed(selector, timeout = 5000) {
-    await this.getElement().waitForDisplayed({ timeout })
+  async waitForDisplayed() {
+    await this.getElement().waitForDisplayed(Timeouts.SHORT_TIMEOUT)
   }
 
-  async waitForClickable(selector, timeout = 5000) {
-    await this.getElement().waitForClickable({ timeout })
+  async waitForClickable() {
+    await this.getElement().waitForClickable(Timeouts.SHORT_TIMEOUT)
   }
 
-  async waitForEnabled(selector, timeout = 5000) {
-    await this.getElement().waitForEnabled({ timeout })
+  async waitForEnabled() {
+    await this.getElement().waitForEnabled(Timeouts.SHORT_TIMEOUT)
   }
 
   async select() {

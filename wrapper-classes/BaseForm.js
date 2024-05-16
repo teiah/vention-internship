@@ -1,3 +1,5 @@
+import { Timeouts } from '../constants/timeouts.js'
+
 class BaseForm {
   constructor(name, selector) {
     this.name = name
@@ -14,14 +16,14 @@ class BaseForm {
     return await element.isEnabled()
   }
 
-  async waitForDisplayed(selector, timeout = 5000) {
+  async waitForDisplayed() {
     const element = await $(this.selector)
-    await element.waitForDisplayed({ timeout })
+    await element.waitForDisplayed(Timeouts.SHORT_TIMEOUT)
   }
 
-  async waitForEnabled(selector, timeout = 5000) {
+  async waitForEnabled() {
     const element = await $(this.selector)
-    await element.waitForEnabled({ timeout })
+    await element.waitForEnabled(Timeouts.SHORT_TIMEOUT)
   }
 }
 export default BaseForm

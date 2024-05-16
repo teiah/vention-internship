@@ -1,8 +1,6 @@
-import browser from '@wdio/globals'
-
 class Browser {
   async open(url) {
-    await this.browser.url(url)
+    await browser.url(url)
   }
 
   async getCurrentUrl() {
@@ -38,7 +36,7 @@ class Browser {
   }
 
   async getWindowSize() {
-    await browser.getWindowSize
+    await browser.getWindowSize()
   }
 
   async maximizeWindow() {
