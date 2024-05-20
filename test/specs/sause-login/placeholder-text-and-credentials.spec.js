@@ -1,4 +1,5 @@
 import { assert } from 'chai'
+import Colors from '../../../constants/colors.js'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
@@ -27,8 +28,7 @@ describe('Test case 2', function () {
     // Verify the color of the "Login" button is green (#3ddc91).
     const color = await loginButton.getCSSProperty('background-color')
     const actualColor = color.parsed.hex
-    const expectedColor = '#3ddc91'
-    assert.equal(actualColor, expectedColor, "Button color doesn't match.")
+    assert.equal(actualColor, Colors.BUTTON_BACKGROUND, "Button color doesn't match.")
 
     /* Validate the list of usernames contains:
     standard_user
