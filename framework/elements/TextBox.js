@@ -14,8 +14,7 @@ class TextBox extends BaseElement {
   }
 
   async appendText(value) {
-    const currentText = await this.getElement().getText()
-    await this.setText(currentText + value)
+    await this.getElement().addValue(value)
   }
 
   async isEmpty() {
