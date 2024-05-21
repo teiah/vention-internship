@@ -1,4 +1,4 @@
-import { Timeouts } from '../constants/timeouts.js'
+import { Timeouts } from '../../constants/timeouts.js'
 
 class BaseElement {
   constructor(name, selector) {
