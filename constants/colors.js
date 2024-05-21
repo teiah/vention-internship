@@ -1,7 +1,7 @@
 const Colors = {
-  BUTTON_BACKGROUND: '#3ddc91',
-  CREDENTIALS_BACKGROUND: '#132322',
+  GREEN: '#3ddc91',
+  BLACK: '#132322',
   WHITE: '#ffffff',
-  PAGE_BACKGROUND: '#eefcf6',
+  LIGHT_GREEN: '#eefcf6',
 }
 export default Colors
