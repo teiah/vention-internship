@@ -12,6 +12,11 @@ class CheckBox extends BaseElement {
       await this.click()
     }
   }
+
+  async isSelected() {
+    const element = await this.getElement()
+    return await element.isSelected()
+  }
 }
 
 export default CheckBox
