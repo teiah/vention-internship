@@ -27,7 +27,11 @@ class Browser {
     return browser.getWindowHandle()
   }
 
-  async close() {
+  async getWindowHandles() {
+    return browser.getWindowHandles()
+  }
+
+  async closeWindow() {
     await this.browser.closeWindow()
   }
 
