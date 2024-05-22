@@ -7,59 +7,55 @@ class BaseElement {
   }
 
   async getElement() {
-    return await $(this.selector)
+    return $(this.selector)
   }
 
-  async waitForExist(timeout, reverse = false, interval) {
+  async waitForExist({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForExist({ timeout, reverse, interval: interval ?? Timeouts.WAIT_FOR_INTERVAL })
-    } catch (error) {
-      console.error('Error waiting for element to exist:', error)
-      throw error
+      await this.getElement().waitForExist({ timeout, reverse, interval })
+    } catch (e) {
+      return false
     }
   }
 
-  async waitForDisplayed(timeout, reverse = false, interval) {
+  async waitForDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForDisplayed({ timeout, reverse, interval: interval ?? Timeouts.WAIT_FOR_INTERVAL })
-    } catch (error) {
-      console.error('Error waiting for element to be displayed:', error)
-      throw error
+      await this.getElement().waitForDisplayed({ timeout, reverse, interval })
+    } catch (e) {
+      return false
     }
   }
 
-  async waitForClickable(timeout, reverse = false, interval) {
+  async waitForClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForClickable({ timeout, reverse, interval: interval ?? Timeouts.WAIT_FOR_INTERVAL })
-    } catch (error) {
-      console.error('Error waiting for element to be clickable:', error)
-      throw error
+      await this.getElement().waitForClickable({ timeout, reverse, interval })
+    } catch (e) {
+      return false
     }
   }
 
-  async waitForEnabled(timeout, reverse = false, interval) {
+  async waitForEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForEnabled({ timeout, reverse, interval: interval ?? Timeouts.WAIT_FOR_INTERVAL })
-    } catch (error) {
-      console.error('Error waiting for element to be enabled:', error)
-      throw error
+      await this.getElement().waitForEnabled({ timeout, reverse, interval })
+    } catch (e) {
+      return false
     }
   }
 
-  async isExisting(timeout) {
-    return await this.getElement().isExisting({ timeout })
+  async isExisting({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    return await this.getElement().waitForExist({ timeout, reverse, interval })
   }
 
-  async isDisplayed(timeout) {
-    return await this.getElement().isDisplayed({ timeout })
+  async isDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    return await this.getElement().waitForDisplayed({ timeout, reverse, interval })
   }
 
-  async isClickable(timeout) {
-    return await this.getElement().isClickable({ timeout })
+  async isClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    return await this.getElement().waitForClickable({ timeout, reverse, interval })
   }
 
-  async isEnabled(timeout) {
-    return await this.getElement().isEnabled({ timeout })
+  async isEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    return await this.getElement().waitForEnabled({ timeout, reverse, interval })
   }
 
   async getCssProperty(propertyName) {
