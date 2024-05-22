@@ -2,28 +2,34 @@ import BaseElement from '../BaseElement'
 
 class TextBox extends BaseElement {
   async getText() {
-    return this.getElement().getValue()
+    const element = await this.getElement()
+    return element.getValue()
   }
 
   async setText(value) {
-    await this.getElement().setValue(value)
+    const element = await this.getElement()
+    await element.setValue(value)
   }
 
   async clearText() {
-    await this.getElement().clearValue()
+    const element = await this.getElement()
+    await element.clearValue()
   }
 
   async appendText(value) {
-    await this.getElement().addValue(value)
+    const element = await this.getElement()
+    await element.addValue(value)
   }
 
   async isEmpty() {
-    const text = await this.getElement().getText()
+    const element = await this.getElement()
+    const text = await element.getText()
     return text.trim() === ''
   }
 
   async isReadOnly() {
-    return (await this.element.getAttribute('readonly')) === 'true'
+    const element = await this.getElement()
+    return (await element.getAttribute('readonly')) === 'true'
   }
 }
 

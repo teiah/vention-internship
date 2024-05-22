@@ -2,7 +2,8 @@ import BaseElement from '../BaseElement'
 
 class Link extends BaseElement {
   async getUrl() {
-    return await this.getElement().getAttribute('href')
+    const element = await this.getElement()
+    return await element.getAttribute('href')
   }
 }
 export default Link

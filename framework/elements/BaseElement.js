@@ -12,7 +12,8 @@ class BaseElement {
 
   async waitForExist({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForExist({ timeout, reverse, interval })
+      const element = await this.getElement()
+      await element.waitForExist({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -20,7 +21,8 @@ class BaseElement {
 
   async waitForDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForDisplayed({ timeout, reverse, interval })
+      const element = await this.getElement()
+      await element.waitForDisplayed({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -28,7 +30,8 @@ class BaseElement {
 
   async waitForClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForClickable({ timeout, reverse, interval })
+      const element = await this.getElement()
+      await element.waitForClickable({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -36,67 +39,82 @@ class BaseElement {
 
   async waitForEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
-      await this.getElement().waitForEnabled({ timeout, reverse, interval })
+      const element = await this.getElement()
+      await element.waitForEnabled({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
   }
 
   async isExisting({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
-    return await this.getElement().waitForExist({ timeout, reverse, interval })
+    const element = await this.getElement()
+    return await element.waitForExist({ timeout, reverse, interval })
   }
 
   async isDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
-    return await this.getElement().waitForDisplayed({ timeout, reverse, interval })
+    const element = await this.getElement()
+    return await element.waitForDisplayed({ timeout, reverse, interval })
   }
 
   async isClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
-    return await this.getElement().waitForClickable({ timeout, reverse, interval })
+    const element = await this.getElement()
+    return await element.waitForClickable({ timeout, reverse, interval })
   }
 
   async isEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
-    return await this.getElement().waitForEnabled({ timeout, reverse, interval })
+    const element = await this.getElement()
+    return await element.waitForEnabled({ timeout, reverse, interval })
   }
 
   async getCssProperty(propertyName) {
-    return await this.getElement().getCSSProperty(propertyName).value
+    const element = await this.getElement()
+    return await element.getCSSProperty(propertyName).value
   }
 
   async getText() {
-    return await this.getElement().getText()
+    const element = await this.getElement()
+    return await element.getText()
   }
 
   async getValue() {
-    return await this.getElement().getValue()
+    const element = await this.getElement()
+    return await element.getValue()
   }
 
   async getAttribute(attributeName) {
-    return await this.getElement().getAttribute(attributeName)
+    const element = await this.getElement()
+    return await element.getAttribute(attributeName)
   }
 
   async scrollIntoView() {
-    await this.getElement().scrollIntoView()
+    const element = await this.getElement()
+    await element.scrollIntoView()
   }
 
   async moveTo() {
-    await this.getElement().moveTo()
+    const element = await this.getElement()
+    await element.moveTo()
   }
 
   async click({ button, x, y, skipRelease } = {}) {
-    await this.getElement().click({ button, x, y, skipRelease })
+    const element = await this.getElement()
+    await element.click({ button, x, y, skipRelease })
   }
 
   async doubleClick() {
-    await this.getElement().doubleClick()
+    const element = await this.getElement()
+    await element.doubleClick()
   }
 
   async rightClick() {
-    await this.getElement().click({ button: 'right' })
+    const element = await this.getElement()
+    await element.click({ button: 'right' })
   }
 
   async dragAndDrop(targetSelector) {
+    const element = await this.getElement()
     const targetElement = await $(targetSelector)
-    await this.getElement().dragAndDrop(targetElement)
+    await element.dragAndDrop(targetElement)
   }
 }
 
