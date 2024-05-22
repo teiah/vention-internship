@@ -82,8 +82,8 @@ class BaseElement {
     await this.getElement().moveTo()
   }
 
-  async click() {
-    await this.getElement().click()
+  async click({ button, x, y, skipRelease } = {}) {
+    await this.getElement().click({ button, x, y, skipRelease })
   }
 
   async doubleClick() {
