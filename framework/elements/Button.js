@@ -1,4 +1,4 @@
-import BaseElement from '../BaseElement'
+import BaseElement from './BaseElement.js'
 
 class Button extends BaseElement {}
 

@@ -1,10 +1,10 @@
-import Label from '../elements/Label.js'
+import Label from './elements/Label.js'
 
 class BaseForm {
   constructor(name, selector) {
     this.name = name
     this.selector = selector
-    this.label = new Label(this.selector, this.name)
+    this.label = new Label(name, selector)
   }
 
   async isDisplayed(timeout) {

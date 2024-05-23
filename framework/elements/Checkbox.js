@@ -1,4 +1,4 @@
-import BaseElement from '../BaseElement'
+import BaseElement from './BaseElement.js'
 
 class CheckBox extends BaseElement {
   async check() {
@@ -15,7 +15,7 @@ class CheckBox extends BaseElement {
 
   async isSelected() {
     const element = await this.getElement()
-    return await element.isSelected()
+    return element.isSelected()
   }
 }
 

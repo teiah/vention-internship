@@ -1,4 +1,4 @@
-import BaseElement from '../BaseElement'
+import BaseElement from './BaseElement.js'
 
 class TextBox extends BaseElement {
   async getText() {
