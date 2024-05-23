@@ -1,4 +1,5 @@
-import { Timeouts } from '../../constants/timeouts'
+import { Timeouts } from '../../test/constants/timeouts.js'
+import { $ } from '@wdio/globals'
 
 class BaseElement {
   constructor(name, selector) {
@@ -13,7 +14,7 @@ class BaseElement {
   async waitForExist({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
       const element = await this.getElement()
-      await element.waitForExist({ timeout, reverse, interval })
+      return element.waitForExist({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -22,7 +23,7 @@ class BaseElement {
   async waitForDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
       const element = await this.getElement()
-      await element.waitForDisplayed({ timeout, reverse, interval })
+      return element.waitForDisplayed({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -31,7 +32,7 @@ class BaseElement {
   async waitForClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
       const element = await this.getElement()
-      await element.waitForClickable({ timeout, reverse, interval })
+      return element.waitForClickable({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -40,7 +41,7 @@ class BaseElement {
   async waitForEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     try {
       const element = await this.getElement()
-      await element.waitForEnabled({ timeout, reverse, interval })
+      return element.waitForEnabled({ timeout, reverse, interval })
     } catch (e) {
       return false
     }
@@ -48,42 +49,42 @@ class BaseElement {
 
   async isExisting({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     const element = await this.getElement()
-    return await element.waitForExist({ timeout, reverse, interval })
+    return element.waitForExist({ timeout, reverse, interval })
   }
 
   async isDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     const element = await this.getElement()
-    return await element.waitForDisplayed({ timeout, reverse, interval })
+    return element.waitForDisplayed({ timeout, reverse, interval })
   }
 
   async isClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     const element = await this.getElement()
-    return await element.waitForClickable({ timeout, reverse, interval })
+    return element.waitForClickable({ timeout, reverse, interval })
   }
 
   async isEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
     const element = await this.getElement()
-    return await element.waitForEnabled({ timeout, reverse, interval })
+    return element.waitForEnabled({ timeout, reverse, interval })
   }
 
   async getCssProperty(propertyName) {
     const element = await this.getElement()
-    return await element.getCSSProperty(propertyName).value
+    return (await element.getCSSProperty(propertyName)).value
   }
 
   async getText() {
     const element = await this.getElement()
-    return await element.getText()
+    return element.getText()
   }
 
   async getValue() {
     const element = await this.getElement()
-    return await element.getValue()
+    return element.getValue()
   }
 
   async getAttribute(attributeName) {
     const element = await this.getElement()
-    return await element.getAttribute(attributeName)
+    return element.getAttribute(attributeName)
   }
 
   async scrollIntoView() {
