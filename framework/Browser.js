@@ -1,3 +1,5 @@
+import { browser } from '@wdio/globals'
+
 class Browser {
   async open(url) {
     await browser.url(url)

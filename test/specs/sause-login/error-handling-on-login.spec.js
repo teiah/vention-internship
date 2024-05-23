@@ -1,4 +1,5 @@
 import { assert } from 'chai'
+import { $, browser } from '@wdio/globals'
 
 describe('Test case 3', function () {
   it('Should verify error handling on login', async function () {

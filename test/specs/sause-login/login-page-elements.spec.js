@@ -1,4 +1,5 @@
 import { assert } from 'chai'
+import { $, browser } from '@wdio/globals'
 
 describe('Test case 1', function () {
   it('Should verify page elements are present', async function () {
