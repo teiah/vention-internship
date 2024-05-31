@@ -5,14 +5,14 @@ import Label from '../../framework/elements/Label.js'
 
 class LoginForm extends BaseForm {
   constructor() {
-    super('loginForm', '//id="login-form-container"')
+    super('Login form', '//id="login-form-container"')
     this.usernameField = new TextBox('Username field', '//input[@data-test="username"]')
     this.passwordField = new TextBox('Password field', '//input[@data-test="password"]')
     this.loginButton = new Button('Login button', '//input[@data-test="login-button"]')
     this.errorMessage = new Label('Error message', '//h3[@data-test="error"]')
-    this.usernameIcon = new Label('Username icon', '//input[@data-test="username"]/following-sibling::*[contains(@class, "error_icon")]')
-    this.passwordIcon = new Label('Password icon', '//input[@data-test="password"]/following-sibling::*[contains(@class, "error_icon")]')
-    this.errorCloseButton = new Button('Error button', '//button[@class="error-button"]')
+    this.usernameErrorIcon = new Label('Username error icon', '//input[@data-test="username"]/following-sibling::*[contains(@class, "error_icon")]')
+    this.passwordErrorIcon = new Label('Password error icon', '//input[@data-test="password"]/following-sibling::*[contains(@class, "error_icon")]')
+    this.errorCloseButton = new Button('Error close button', '//button[@class="error-button"]')
   }
 
   async login(username, password) {
@@ -57,28 +57,28 @@ class LoginForm extends BaseForm {
     return this.passwordField.getAttribute('placeholder')
   }
 
-  async errorMessageIsDisplayed(timeout) {
+  async isErrorMessageDisplayed(timeout) {
     return this.errorMessage.isDisplayed(timeout)
   }
 
-  async usernameIconIsDisplayed(timeout) {
-    return this.usernameIcon.isDisplayed(timeout)
+  async isUsernameErrorIconDisplayed(timeout) {
+    return this.usernameErrorIcon.isDisplayed(timeout)
   }
 
-  async passwordIconIsDisplayed(timeout) {
-    return this.passwordIcon.isDisplayed(timeout)
+  async isPasswordErrorIconDisplayed(timeout) {
+    return this.passwordErrorIcon.isDisplayed(timeout)
   }
 
   async closeErrorMessage() {
     await this.errorCloseButton.click()
   }
 
-  async usernameIconIsExisting() {
-    return this.usernameIcon.isExisting()
+  async isUsernameErrorIconExisting() {
+    return this.usernameErrorIcon.isExisting()
   }
 
-  async passwordIconIsExisting() {
-    return this.passwordIcon.isExisting()
+  async isPasswordErrorIconExisting() {
+    return this.passwordErrorIcon.isExisting()
   }
 }
 export default LoginForm

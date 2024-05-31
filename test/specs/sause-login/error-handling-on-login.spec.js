@@ -9,17 +9,17 @@ describe('Test case 3', function () {
     await LoginPage.loginForm.clickLoginButton()
 
     // Verify the error message is displayed.
-    assert.isTrue(await LoginPage.loginForm.errorMessageIsDisplayed(), 'Error message is not displayed.')
+    assert.isTrue(await LoginPage.loginForm.isErrorMessageDisplayed(), 'Error message is not displayed.')
 
     // Confirm that the username and password fields display error icons.
-    assert.isTrue(await LoginPage.loginForm.usernameIconIsDisplayed(), 'Username error icon should be displayed.')
-    assert.isTrue(await LoginPage.loginForm.passwordIconIsDisplayed(), 'Password error icon should be displayed.')
+    assert.isTrue(await LoginPage.loginForm.isUsernameErrorIconDisplayed(), 'Username error icon should be displayed.')
+    assert.isTrue(await LoginPage.loginForm.isPasswordErrorIconDisplayed(), 'Password error icon should be displayed.')
 
     // Close the error message.
     await LoginPage.loginForm.closeErrorMessage()
 
     // Ensure the error icons are removed from the username and password fields.
-    assert.isFalse(await LoginPage.loginForm.usernameIconIsExisting(), 'Username icon should not be on the page.')
-    assert.isFalse(await LoginPage.loginForm.passwordIconIsExisting(), 'Password icon should not be on the page.')
+    assert.isFalse(await LoginPage.loginForm.isUsernameErrorIconExisting(), 'Username icon should not be on the page.')
+    assert.isFalse(await LoginPage.loginForm.isPasswordErrorIconExisting(), 'Password icon should not be on the page.')
   })
 })
