@@ -8,7 +8,7 @@ class BaseForm {
   }
 
   async isDisplayed(timeout) {
-    return await this.label.isDisplayed({ timeout })
+    return this.label.isDisplayed({ timeout })
   }
 
   async waitForDisplayed(timeout) {
