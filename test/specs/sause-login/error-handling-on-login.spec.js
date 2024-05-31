@@ -1,9 +1,10 @@
 import { assert } from 'chai'
 import LoginPage from '../../pageobjects/LoginPage.js'
+import Browser from '../../../framework/Browser.js'
 
 describe('Test case 3', function () {
   it('Should verify error handling on login', async function () {
-    await LoginPage.openLoginPage()
+    await Browser.open(LoginPage.url)
 
     // Click the "Login" button without entering credentials.
     await LoginPage.loginForm.clickLoginButton()

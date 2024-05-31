@@ -1,10 +1,11 @@
 import { assert } from 'chai'
 import Colors from '../../constants/colors.js'
 import LoginPage from '../../pageobjects/LoginPage.js'
+import Browser from '../../../framework/Browser.js'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
-    await LoginPage.openLoginPage()
+    await Browser.open(LoginPage.url)
 
     // Verify the placeholder text for the username field is "Username".
     assert.equal(await LoginPage.loginForm.getUsernamePlaceholder(), 'Username', 'Placeholder should be "Username".')

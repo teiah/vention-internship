@@ -1,5 +1,4 @@
 import Label from '../../framework/elements/Label.js'
-import Browser from '../../framework/Browser.js'
 import LoginForm from './LoginForm.js'
 
 class LoginPage {
@@ -10,10 +9,6 @@ class LoginPage {
     this.infoBlock = new Label('Info block', '//div[@class="login_credentials_wrap-inner"]')
     this.acceptedUsernames = new Label('Accepted usernames', '//div[@data-test="login-credentials"]')
     this.acceptedPassword = new Label('Accepted password', '//div[@class="login_password"]')
-  }
-
-  async openLoginPage() {
-    await new Browser().open(this.url)
   }
 
   async isLogoDisplayed() {
