@@ -34,7 +34,7 @@ class Browser {
   }
 
   async closeWindow() {
-    await this.browser.closeWindow()
+    await browser.closeWindow()
   }
 
   async switchToFrame(frame) {
@@ -42,7 +42,7 @@ class Browser {
   }
 
   async getWindowSize() {
-    await browser.getWindowSize()
+    return browser.getWindowSize()
   }
 
   async maximizeWindow() {
@@ -61,10 +61,6 @@ class Browser {
     await browser.setWindowSize(width, height)
   }
 
-  async getAllCookies() {
-    return await browser.getCookies()
-  }
-
   async addCookie(cookie) {
     await browser.setCookies(cookie)
   }
@@ -74,11 +70,11 @@ class Browser {
   }
 
   async getCookies() {
-    return await browser.getCookies()
+    return browser.getCookies()
   }
 
   async getNamedCookie(name) {
-    return await browser.getCookies(name)
+    return browser.getCookies(name)
   }
 
   async deleteCookie(name) {
