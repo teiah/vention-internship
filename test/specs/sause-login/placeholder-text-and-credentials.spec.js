@@ -1,34 +1,24 @@
 import { assert } from 'chai'
 import Colors from '../../constants/colors.js'
-import { $, browser } from '@wdio/globals'
+import LoginPage from '../../pageobjects/LoginPage.js'
+import Browser from '../../../framework/Browser.js'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
-    // Open https://www.saucedemo.com/.
-    const url = 'https://www.saucedemo.com/'
-    await browser.url(url)
-
-    // Confirm the login page is opened.
-    assert.equal(await browser.getUrl(), url, 'URL is not as expected.')
+    await Browser.open(LoginPage.url)
 
     // Verify the placeholder text for the username field is "Username".
-    const username = await $('//input[@data-test="username"]')
-    const usernamePlaceholder = await username.getAttribute('placeholder')
-    assert.equal(usernamePlaceholder, 'Username', 'Placeholder should be "Username".')
+    assert.equal(await LoginPage.loginForm.getUsernamePlaceholder(), 'Username', 'Placeholder should be "Username".')
 
     // Confirm the placeholder text for the password field is "Password".
-    const password = await $('//input[@data-test="password"]')
-    const passwordPlaceholderText = await password.getAttribute('placeholder')
-    assert.equal(passwordPlaceholderText, 'Password', 'Placeholder should be "Password".')
+    assert.equal(await LoginPage.loginForm.getPasswordPlaceholder(), 'Password', 'Placeholder should be "Password".')
 
     // Check the text on the "Login" button is "Login".
-    const loginButton = await $('//input[@data-test="login-button"]')
-    const loginButtonText = await loginButton.getValue()
-    assert.equal(loginButtonText, 'Login', 'Button text should be "Login".')
+    assert.equal(await LoginPage.loginForm.getLoginButtonText(), 'Login', 'Button text should be "Login".')
 
     // Verify the color of the "Login" button is green (#3ddc91).
-    const color = await loginButton.getCSSProperty('background-color')
-    const actualColor = color.parsed.hex
+    const loginButtonColor = await LoginPage.loginForm.getLoginButtonColor()
+    const actualColor = loginButtonColor.parsed.hex
     assert.equal(actualColor, Colors.GREEN, "Button color doesn't match.")
 
     /* Validate the list of usernames contains:
@@ -40,7 +30,7 @@ describe('Test case 2', function () {
     visual_user*/
 
     const expectedUsernames = ['standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user']
-    const usernamesText = await $('//div[@data-test="login-credentials"]').getText()
+    const usernamesText = await LoginPage.getAcceptedUsernamesText()
     const displayedUsernames = usernamesText.split('\n')
     expectedUsernames.forEach((expectedUsername) => {
       assert.include(displayedUsernames, expectedUsername, `Expected username '${expectedUsername}' is missing`)
@@ -48,7 +38,7 @@ describe('Test case 2', function () {
 
     // Confirm the password for all users is "secret_sauce".
     const expectedPassword = 'secret_sauce'
-    const passwordText = await $('//div[@class="login_password"]').getText()
+    const passwordText = await LoginPage.getAcceptedPasswordText()
     const colonIndex = passwordText.indexOf(':')
     const actualPassword = passwordText.slice(colonIndex + 1).trim()
     assert.equal(actualPassword, expectedPassword, `Expected password to be ${expectedPassword}`)

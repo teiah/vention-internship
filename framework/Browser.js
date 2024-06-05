@@ -102,4 +102,4 @@ class Browser {
   }
 }
 
-export default Browser
+export default new Browser()

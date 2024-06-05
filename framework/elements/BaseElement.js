@@ -47,9 +47,9 @@ class BaseElement {
     }
   }
 
-  async isExisting({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+  async isExisting() {
     const element = await this.getElement()
-    return element.waitForExist({ timeout, reverse, interval })
+    return element.isExisting()
   }
 
   async isDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
@@ -69,7 +69,7 @@ class BaseElement {
 
   async getCssProperty(propertyName) {
     const element = await this.getElement()
-    return (await element.getCSSProperty(propertyName)).value
+    return element.getCSSProperty(propertyName)
   }
 
   async getText() {
