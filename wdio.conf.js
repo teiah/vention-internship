@@ -1,5 +1,7 @@
 import path from 'node:path'
 import url from 'node:url'
+import Logger from './framework/logger/Logger.js'
+import { browser } from '@wdio/globals'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 
@@ -137,7 +139,16 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  reporters: [
+    [
+      'allure',
+      {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
@@ -215,8 +226,10 @@ export const config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  // },
+  beforeTest: async function (test) {
+    const testName = test.title
+    Logger.info(`Starting test: ${testName}`)
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
@@ -233,14 +246,19 @@ export const config = {
    * Function to be executed after a test (in Mocha/Jasmine only)
    * @param {object}  test             test object
    * @param {object}  context          scope object the test was executed with
-   * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
+   * @param {Error}   result.error    error object in case the test fails, otherwise `undefined`
    * @param {*}       result.result    return object of test function
    * @param {number}  result.duration  duration of test
    * @param {boolean} result.passed    true if test has passed, otherwise false
    * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterTest: async function (test, context, { error, passed }) {
+    const testName = test.title
+    Logger.info(`Finished - ${testName}: ${passed ? 'passed' : 'failed'}`)
+    if (error) {
+      await browser.takeScreenshot()
+    }
+  },
 
   /**
    * Hook that gets executed after the suite has ended
