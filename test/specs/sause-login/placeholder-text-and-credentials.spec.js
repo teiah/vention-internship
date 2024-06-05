@@ -2,25 +2,28 @@ import { assert } from 'chai'
 import Colors from '../../constants/colors.js'
 import LoginPage from '../../pageobjects/LoginPage.js'
 import Browser from '../../../framework/Browser.js'
+import Logger from '../../../framework/logger/Logger.js'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
+    Logger.trace('Open login page')
     await Browser.open(LoginPage.url)
 
-    // Verify the placeholder text for the username field is "Username".
+    Logger.trace('Check if the placeholder text for the username field')
     assert.equal(await LoginPage.loginForm.getUsernamePlaceholder(), 'Username', 'Placeholder should be "Username".')
 
-    // Confirm the placeholder text for the password field is "Password".
+    Logger.trace('Check if the placeholder text for the password field')
     assert.equal(await LoginPage.loginForm.getPasswordPlaceholder(), 'Password', 'Placeholder should be "Password".')
 
-    // Check the text on the "Login" button is "Login".
+    Logger.trace('Check if the text on the "Login" button')
     assert.equal(await LoginPage.loginForm.getLoginButtonText(), 'Login', 'Button text should be "Login".')
 
-    // Verify the color of the "Login" button is green (#3ddc91).
+    Logger.trace('Check if the color of the "Login" button')
     const loginButtonColor = await LoginPage.loginForm.getLoginButtonColor()
     const actualColor = loginButtonColor.parsed.hex
     assert.equal(actualColor, Colors.GREEN, "Button color doesn't match.")
 
+    Logger.trace('Check the list of usernames')
     /* Validate the list of usernames contains:
     standard_user
     locked_out_user
@@ -36,7 +39,7 @@ describe('Test case 2', function () {
       assert.include(displayedUsernames, expectedUsername, `Expected username '${expectedUsername}' is missing`)
     })
 
-    // Confirm the password for all users is "secret_sauce".
+    Logger.trace('Check if the password for all users is "secret_sauce".')
     const expectedPassword = 'secret_sauce'
     const passwordText = await LoginPage.getAcceptedPasswordText()
     const colonIndex = passwordText.indexOf(':')
