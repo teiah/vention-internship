@@ -17,6 +17,8 @@
     "chai": "^4.4.1",
     "dotenv": "^16.4.1",
     "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "log4js": "^6.9.1"
   },
   "optionalDependencies": {
     "eslint": "^8.56.0",
