@@ -1,5 +1,6 @@
 import { assert } from 'chai'
-import Colors from '../../../constants/colors.js'
+import Colors from '../../constants/colors.js'
+import { $, browser } from '@wdio/globals'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
