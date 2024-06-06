@@ -15,18 +15,10 @@ const logConfig = {
         pattern: '[%d{yyyy-MM-dd hh:mm:ss}] [%p] %m%',
       },
     },
-    traceFile: {
-      type: 'file',
-      filename: 'logs/trace.log',
-      layout: {
-        type: 'pattern',
-        pattern: '[%d{yyyy-MM-dd hh:mm:ss}] [%p] %m%',
-      },
-    },
   },
   categories: {
     default: { appenders: ['out', 'app'], level: 'debug' },
-    traceCategory: { appenders: ['traceFile'], level: 'trace' },
+    traceCategory: { appenders: ['app'], level: 'trace' },
   },
 }
 

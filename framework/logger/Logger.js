@@ -7,28 +7,28 @@ const fileLogger = log4js.getLogger('traceCategory')
 log4js.configure(logConfig)
 
 class Logger {
-  trace(message) {
-    fileLogger.trace(message)
+  trace(...args) {
+    fileLogger.trace(...args)
   }
 
-  debug(message) {
-    innerLogger.debug(message)
+  debug(...args) {
+    innerLogger.debug(...args)
   }
 
-  info(message) {
-    innerLogger.info(message)
+  info(...args) {
+    innerLogger.info(...args)
   }
 
-  warn(message) {
-    innerLogger.warn(message)
+  warn(...args) {
+    innerLogger.warn(...args)
   }
 
-  error(message) {
-    innerLogger.error(message)
+  error(...args) {
+    innerLogger.error(...args)
   }
 
-  fatal(message) {
-    innerLogger.fatal(message)
+  fatal(...args) {
+    innerLogger.fatal(...args)
   }
 }
 
