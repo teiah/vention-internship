@@ -228,6 +228,7 @@ export const config = {
    */
   beforeTest: async function (test) {
     const testName = test.title
+    Logger.initLogger(testName)
     Logger.info(`Starting test: ${testName}`)
   },
   /**
