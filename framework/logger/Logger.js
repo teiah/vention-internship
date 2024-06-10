@@ -9,6 +9,17 @@ class Logger {
     log4js.configure(config)
     this.innerLogger = log4js.getLogger()
     this.fileLogger = log4js.getLogger('traceCategory')
+    this.currentTestName = testName
+  }
+
+  getLogFileName() {
+    return `logs/${this.currentTestName}.log`
+  }
+
+  attachLogFileToReport() {
+    const logFilePath = this.getLogFileName()
+    const logFileContent = fs.readFileSync(logFilePath, 'utf8')
+    allure.addAttachment('Log File', Buffer.from(logFileContent), 'text/plain')
   }
 
   trace(...args) {

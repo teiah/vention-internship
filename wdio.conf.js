@@ -261,6 +261,7 @@ export const config = {
       Logger.error(`Finished test: ${testName} - failed`)
       await browser.takeScreenshot()
     }
+    Logger.attachLogFileToReport()
   },
 
   /**
