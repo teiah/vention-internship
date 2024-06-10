@@ -6,24 +6,24 @@ import Logger from '../../../framework/logger/Logger.js'
 
 describe('Test case 2', function () {
   it('Should verify placeholder text and credentials', async function () {
-    Logger.trace('Open login page')
+    Logger.logStep('Open login page')
     await Browser.open(LoginPage.url)
 
-    Logger.trace('Check if the placeholder text for the username field')
+    Logger.logStep('Check if the placeholder text for the username field')
     assert.equal(await LoginPage.loginForm.getUsernamePlaceholder(), 'Username', 'Placeholder should be "Username".')
 
-    Logger.trace('Check if the placeholder text for the password field')
+    Logger.logStep('Check if the placeholder text for the password field')
     assert.equal(await LoginPage.loginForm.getPasswordPlaceholder(), 'Password', 'Placeholder should be "Password".')
 
-    Logger.trace('Check if the text on the "Login" button')
+    Logger.logStep('Check if the text on the "Login" button')
     assert.equal(await LoginPage.loginForm.getLoginButtonText(), 'Login', 'Button text should be "Login".')
 
-    Logger.trace('Check if the color of the "Login" button')
+    Logger.logStep('Check if the color of the "Login" button')
     const loginButtonColor = await LoginPage.loginForm.getLoginButtonColor()
     const actualColor = loginButtonColor.parsed.hex
     assert.equal(actualColor, Colors.GREEN, "Button color doesn't match.")
 
-    Logger.trace('Check the list of usernames')
+    Logger.logStep('Check the list of usernames')
     /* Validate the list of usernames contains:
     standard_user
     locked_out_user
@@ -39,7 +39,7 @@ describe('Test case 2', function () {
       assert.include(displayedUsernames, expectedUsername, `Expected username '${expectedUsername}' is missing`)
     })
 
-    Logger.trace('Check if the password for all users is "secret_sauce".')
+    Logger.logStep('Check if the password for all users is "secret_sauce".')
     const expectedPassword = 'secret_sauce'
     const passwordText = await LoginPage.getAcceptedPasswordText()
     const colonIndex = passwordText.indexOf(':')
