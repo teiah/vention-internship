@@ -9,16 +9,16 @@ describe('Test case 2', function () {
     Logger.logStep('Open login page')
     await Browser.open(LoginPage.url)
 
-    Logger.logStep('Check if the placeholder text for the username field')
+    Logger.logStep('Check the placeholder text for the username field')
     assert.equal(await LoginPage.loginForm.getUsernamePlaceholder(), 'Username', 'Placeholder should be "Username".')
 
-    Logger.logStep('Check if the placeholder text for the password field')
+    Logger.logStep('Check the placeholder text for the password field')
     assert.equal(await LoginPage.loginForm.getPasswordPlaceholder(), 'Password', 'Placeholder should be "Password".')
 
-    Logger.logStep('Check if the text on the "Login" button')
+    Logger.logStep('Check the text on the "Login" button')
     assert.equal(await LoginPage.loginForm.getLoginButtonText(), 'Login', 'Button text should be "Login".')
 
-    Logger.logStep('Check if the color of the "Login" button')
+    Logger.logStep('Check the color of the "Login" button')
     const loginButtonColor = await LoginPage.loginForm.getLoginButtonColor()
     const actualColor = loginButtonColor.parsed.hex
     assert.equal(actualColor, Colors.GREEN, "Button color doesn't match.")
