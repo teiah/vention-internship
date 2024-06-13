@@ -13,55 +13,55 @@ class BaseElement {
   }
 
   async waitForExist({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    let result
     try {
       const element = await this.getElement()
       Logger.debug(`Wait for ${this.name} to ${reverse ? 'not exist' : 'exist'}`)
-      const result = await element.waitForExist({ timeout, reverse, interval })
-      Logger.debug(`${this.name} ${reverse ? 'does not exist' : 'exists'}: ${result}`)
-      return result
+      result = await element.waitForExist({ timeout, reverse, interval })
     } catch (e) {
-      Logger.error(`Error waiting for ${this.name} to exist: ${e}`)
-      return false
+      result = false
     }
+    Logger.debug(`${this.name} ${reverse ? 'does not exist' : 'exists'}: ${result}`)
+    return result
   }
 
   async waitForDisplayed({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    let result
     try {
       const element = await this.getElement()
       Logger.debug(`Wait for ${this.name} to ${reverse ? 'not be displayed' : 'be displayed'}`)
-      const result = await element.waitForDisplayed({ timeout, reverse, interval })
-      Logger.debug(`${this.name} ${reverse ? 'is not displayed' : 'is displayed'}: ${result}`)
-      return result
+      result = await element.waitForDisplayed({ timeout, reverse, interval })
     } catch (e) {
-      Logger.error(`Error waiting for ${this.name} to be displayed: ${e}`)
-      return false
+      result = false
     }
+    Logger.debug(`${this.name} ${reverse ? 'is not displayed' : 'is displayed'}: ${result}`)
+    return result
   }
 
   async waitForClickable({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    let result
     try {
       const element = await this.getElement()
       Logger.debug(`Wait for ${this.name} to ${reverse ? 'not be clickable' : 'be clickable'}`)
-      const result = await element.waitForClickable({ timeout, reverse, interval })
-      Logger.debug(`${this.name} ${reverse ? 'is not clickable' : 'is clickable'}: ${result}`)
-      return result
+      result = await element.waitForClickable({ timeout, reverse, interval })
     } catch (e) {
-      Logger.error(`Error waiting for ${this.name} to be clickable: ${e}`)
-      return false
+      result = false
     }
+    Logger.debug(`${this.name} ${reverse ? 'is not clickable' : 'is clickable'}: ${result}`)
+    return result
   }
 
   async waitForEnabled({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    let result
     try {
       const element = await this.getElement()
       Logger.debug(`Wait for ${this.name} to ${reverse ? 'not be enabled' : 'be enabled'}`)
-      const result = await element.waitForEnabled({ timeout, reverse, interval })
-      Logger.debug(`${this.name} ${reverse ? 'is not enabled' : 'is enabled'}: ${result}`)
-      return result
+      result = await element.waitForEnabled({ timeout, reverse, interval })
     } catch (e) {
-      Logger.error(`Error waiting for ${this.name} to be enabled: ${e}`)
-      return false
+      result = false
     }
+    Logger.debug(`${this.name} ${reverse ? 'is not enabled' : 'is enabled'}: ${result}`)
+    return result
   }
 
   async isExisting() {
