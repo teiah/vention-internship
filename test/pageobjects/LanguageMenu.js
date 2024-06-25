@@ -15,6 +15,7 @@ class LanguageMenu extends BaseForm {
   }
 
   async selectEnglish() {
+    await this.languageList.click()
     await this.englishLanguage.click()
   }
 }

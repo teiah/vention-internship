@@ -8,3 +8,4 @@ export const Timeouts = {
   DEFAULT_WAIT_INTERVAL: 1000,
   WAIT_FOR_INTERVAL: 500,
 }
+export default Timeouts

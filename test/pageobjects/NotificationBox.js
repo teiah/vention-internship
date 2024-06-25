@@ -1,11 +1,14 @@
 import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
-import States from '../constants/states.js'
+import Statuses from '../constants/statuses.js'
+import Timeouts from '../constants/timeouts.js'
+import Browser from '../../framework/Browser.js'
 
 class NotificationBox {
   constructor() {
     this.notificationMessage = new Label('Notification message', '.notifications .notification:not(.none) .notification-message')
     this.restartButton = new Button('Restart game button', '//div[@class="notification-submit restart"]')
+    this.field = new Label('Notification field', 'div[class*="notification "]')
   }
 
   async isNotificationTextDisplayed() {
@@ -24,37 +27,51 @@ class NotificationBox {
     return this.field.getCssProperty('background-color')
   }
 
-  async getNotificationTextWithoutLog() {
-    return this.notificationMessage.getText(false)
-  }
-
   async getNotificationText() {
     return this.notificationMessage.getText()
   }
 
-  async checkGameStatus() {
+  async getNotificationTextWithoutLog() {
+    return this.notificationMessage.getText(false)
+  }
+
+  async getGameStatus() {
     const status = await this.getNotificationText()
     switch (status) {
       case 'The game started, your turn.':
       case 'Your turn.':
-        return States.YOUR_TURN
+        return Statuses.YOUR_TURN
       case 'Waiting for opponent.':
-        return States.WAIT_FOR_OPPONENT
+        return Statuses.WAIT_FOR_OPPONENT
       case "The game began, opponent's turn.":
-        return States.START_OPPONENT_TURN
+        return Statuses.START_OPPONENT_TURN
       case "Opponent's turn, please wait.":
-        return States.OPPONENT_TURN
+        return Statuses.OPPONENT_TURN
       case 'Your opponent has left the game.':
-        return States.OPPONENT_LEFT_GAME
+        return Statuses.OPPONENT_LEFT_GAME
       case 'Game over. Congratulations, you won!':
-        return States.GAME_WON
+        return Statuses.GAME_WON
       case 'Game over. You lose.':
-        return States.GAME_LOST
+        return Statuses.GAME_LOST
       case 'Unexpected error. Further play is impossible.':
-        return States.ERROR
+        return Statuses.ERROR
       case 'Connecting to server.':
-        return States.CONNECTING
+        return Statuses.CONNECTING
     }
+  }
+
+  async waitForGameStatusChange(oldText, timeout = Timeouts.LONG_TIMEOUT, interval = Timeouts.EXTRA_SHORT_TIMEOUT) {
+    await Browser.waitUntil(
+      async () => {
+        const newText = await this.getNotificationTextWithoutLog()
+        return newText !== oldText
+      },
+      {
+        timeout,
+        timeoutMsg: 'The game status did not change within the timeout period',
+        interval,
+      },
+    )
   }
 }
 

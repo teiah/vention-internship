@@ -1,7 +1,8 @@
 import Table from '../../framework/elements/Table.js'
 import Label from '../../framework/elements/Label.js'
 import Logger from '../../framework/logger/Logger.js'
-import { $$ } from '@wdio/globals'
+import States from '../constants/states.js'
+
 
 class Battlefield {
   constructor() {
@@ -10,8 +11,7 @@ class Battlefield {
   }
 
   async getRows() {
-    return $$('.battlefield.battlefield__rival .battlefield-row')
-    // return this.rowLabel.getElements()
+    return this.rowLabel.getElements()
   }
 
   async getBattlefieldState() {
@@ -31,12 +31,12 @@ class Battlefield {
         const classes = await cell.getAttribute('class')
 
         if (classes.includes('battlefield-cell__empty')) {
-          state = 'empty'
+          state = States.EMPTY
         }
         if (classes.includes('battlefield-cell__miss')) {
-          state = 'miss'
+          state = States.MISS
         } else if (classes.includes('battlefield-cell__hit')) {
-          state = 'hit'
+          state = States.HIT
         }
 
         rowArray.push(state)

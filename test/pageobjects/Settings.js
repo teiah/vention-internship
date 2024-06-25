@@ -2,6 +2,8 @@ import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
 import Checkbox from '../../framework/elements/Checkbox.js'
 import Link from '../../framework/elements/Link.js'
+import GamePage from './GamePage.js'
+import Browser from '../../framework/Browser.js'
 
 class Settings {
   constructor() {
@@ -34,6 +36,13 @@ class Settings {
     if (await this.randomOpponentLink.isClickable()) {
       await this.randomOpponentLink.click()
     }
+  }
+
+  async selectFriendOpponent() {
+    // if (await this.friendOpponentLink.isClickable()) {
+    //   await this.friendOpponentLink.click()
+    // }
+    await Browser.open('https://battleship-game.org/en/id29329647')
   }
 
   async placeShipsRandomly() {
