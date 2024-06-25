@@ -36,7 +36,7 @@ class NotificationBox {
   }
 
   async getGameStatus() {
-    const status = await this.getNotificationText()
+    const status = await this.getNotificationTextWithoutLog()
     switch (status) {
       case 'The game started, your turn.':
       case 'Your turn.':

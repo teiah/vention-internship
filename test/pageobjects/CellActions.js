@@ -60,8 +60,9 @@ class CellActions {
   async attackCell(x, y) {
     Logger.debug(`Attacking cell x='${x}',y='${y}'`)
     const cell = await $(`.battlefield__rival .battlefield-cell-content[data-x="${x}"][data-y="${y}"]`)
-    await cell.waitForClickable()
-    await cell.click()
+    if (await cell.waitForClickable()) {
+      await cell.click()
+    }
   }
 }
 

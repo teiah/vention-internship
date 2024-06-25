@@ -3,7 +3,6 @@ import Label from '../../framework/elements/Label.js'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
 
-
 class Battlefield {
   constructor() {
     this.battlefield = new Table('Battlefield', '//table[@class="battlefield"]')
