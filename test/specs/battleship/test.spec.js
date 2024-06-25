@@ -4,6 +4,7 @@ import GamePage from '../../pageobjects/GamePage.js'
 import LanguageMenu from '../../pageobjects/LanguageMenu.js'
 import Settings from '../../pageobjects/Settings.js'
 import { assert } from 'chai'
+import Statuses from '../../constants/statuses.js'
 
 describe('Battleship Game - Battlefield', function () {
   it('should win a game of Battleship', async function () {
@@ -26,6 +27,8 @@ describe('Battleship Game - Battlefield', function () {
     await GamePage.startGame()
 
     Logger.logStep('Play a game of Battleship and aim to win.')
-    await GamePage.play()
+    const result = await GamePage.play()
+    await GamePage.handleEndGame(result)
+    assert.equal(result, Statuses.GAME_WON, 'Game not won')
   })
 })
