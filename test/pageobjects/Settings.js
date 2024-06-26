@@ -38,10 +38,9 @@ class Settings {
   }
 
   async selectFriendOpponent() {
-    // if (await this.friendOpponentLink.isClickable()) {
-    //   await this.friendOpponentLink.click()
-    // }
-    await Browser.open('https://battleship-game.org/en/id29329647')
+    if (await this.friendOpponentLink.isClickable()) {
+      await this.friendOpponentLink.click()
+    }
   }
 
   async placeShipsRandomly() {

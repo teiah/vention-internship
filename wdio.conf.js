@@ -68,9 +68,7 @@ export const config = {
         },
         args: ['--disable-features=SidePanelPinning'],
       },
-      'moz:firefoxOptions': {
-        args: ['-headless'],
-      },
+      'moz:firefoxOptions': {},
     },
   ],
 
