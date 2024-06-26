@@ -30,14 +30,9 @@ class GamePage {
     let gameStatus = await NotificationBox.getGameStatus()
     do {
       if (gameStatus === Statuses.YOUR_TURN || gameStatus === Statuses.START_YOUR_TURN) {
-        // do {
         const battlefieldState = await Battlefield.getBattlefieldState()
         const { x, y } = CellActions.getBestCell(battlefieldState)
         await CellActions.attackCell(x, y)
-        // eslint-disable-next-line wdio/no-pause
-        // await browser.pause(500)
-        // gameStatus = await NotificationBox.getGameStatus()
-        // } while (gameStatus === Statuses.YOUR_TURN)
       }
       // eslint-disable-next-line wdio/no-pause
       await browser.pause(500)

@@ -6,8 +6,8 @@ class LanguageMenu extends BaseForm {
   constructor() {
     super('Language list', '//ul[@class="langs"]')
     this.languageList = new Label('Language list', '//ul[@class="langs"]')
-    this.englishLanguage = new Link('English', '//a[title="English"]')
-    this.chineseLanguage = new Link('Chinese', '//a[title="Chinese"]')
+    this.englishLanguage = new Link('English', '//a[@title="English"]')
+    this.chineseLanguage = new Link('Chinese', '//a[@title="Chinese"]')
   }
 
   async openLanguageList() {
