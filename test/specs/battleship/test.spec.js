@@ -12,7 +12,7 @@ describe('Battleship Game - Battlefield', function () {
 
     Logger.logStep('Switch to the English version and verify that it was selected.')
     await LanguageMenu.selectEnglish()
-    assert.include(await GamePage.getLogoText(), 'Battleship', 'Logo text should be in English')
+    assert.equal(await Browser.getCurrentUrl(), 'https://battleship-game.org/en/', 'English site version should be shown')
 
     Logger.logStep('Verify that the "Mark verified empty cells" checkbox is checked')
     assert.isTrue(await Settings.isShootHintChecked(), 'Mark verified empty cells is not checked')
