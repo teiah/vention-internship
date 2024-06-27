@@ -1,5 +1,7 @@
 import path from 'node:path'
 import url from 'node:url'
+import Logger from './framework/logger/Logger.js'
+import { browser } from '@wdio/globals'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 
@@ -74,7 +76,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: 'info',
+  logLevel: 'error',
   //
   // Set specific log levels per logger
   // loggers:
@@ -137,7 +139,16 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  reporters: [
+    [
+      'allure',
+      {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
@@ -215,8 +226,11 @@ export const config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  // },
+  beforeTest: async function (test) {
+    const testName = test.title
+    Logger.initLogger(testName)
+    Logger.info(`Starting test: ${testName}`)
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
@@ -239,8 +253,16 @@ export const config = {
    * @param {boolean} result.passed    true if test has passed, otherwise false
    * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterTest: async function (test, context, { passed }) {
+    const testName = test.title
+    if (passed) {
+      Logger.info(`Finished test: ${testName} - passed`)
+    } else {
+      Logger.error(`Finished test: ${testName} - failed`)
+      await browser.takeScreenshot()
+    }
+    Logger.attachLogFileToReport()
+  },
 
   /**
    * Hook that gets executed after the suite has ended

@@ -11,12 +11,15 @@
   "scripts": {
     "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath",
     "lint-prettify": "eslint . --fix && prettier --write .",
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "allure:report": "allure generate --clean allure-results && allure open"
   },
   "dependencies": {
+    "allure-commandline": "^2.29.0",
     "chai": "^4.4.1",
     "dotenv": "^16.4.1",
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "log4js": "^6.9.1"
   },
   "optionalDependencies": {
     "eslint": "^8.56.0",
@@ -38,6 +41,7 @@
     "@badisi/wdio-harness": "^3.1.1",
     "@testing-library/webdriverio": "^3.2.1",
     "@types/webdriverio": "^5.0.0",
+    "@wdio/allure-reporter": "^8.38.0",
     "@wdio/cli": "^8.36.1",
     "@wdio/globals": "^8.36.1",
     "@wdio/local-runner": "^8.36.1",
