@@ -142,6 +142,11 @@ class Browser {
     Logger.debug(`Sending text to alert: ${text}`)
     await browser.sendAlertText(text)
   }
+
+  async waitUntil(condition, { timeout = 5000, interval = 500 } = {}) {
+    Logger.debug(`Waiting until condition is met with timeout: ${timeout}ms and interval: ${interval}ms`)
+    await browser.waitUntil(condition, { timeout, interval })
+  }
 }
 
 export default new Browser()

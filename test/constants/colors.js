@@ -1,7 +1,7 @@
 const Colors = {
-  GREEN: '#3ddc91',
-  BLACK: '#132322',
-  WHITE: '#ffffff',
-  LIGHT_GREEN: '#eefcf6',
+  RED: '#ff0000',
+  GREEN: '#008000',
+  WHITE: '#f8f8f8',
+  DARK_RED: '#8b0000',
 }
 export default Colors
