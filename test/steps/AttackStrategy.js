@@ -2,7 +2,7 @@ import { $ } from '@wdio/globals'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
 
-class CellActions {
+class AttackStrategy {
   getBestCell(battlefield) {
     const numRows = battlefield.length
     const numCols = battlefield[0].length
@@ -59,11 +59,12 @@ class CellActions {
 
   async attackCell(x, y) {
     Logger.info(`Attacking cell x='${x}',y='${y}'`)
-    const cell = await $(`.battlefield__rival .battlefield-cell-content[data-x="${x}"][data-y="${y}"]`)
+    const cell = await $(
+      `//div[@class="battlefield battlefield__rival"]//tr[@class="battlefield-row"]//div[@class="battlefield-cell-content"][@data-y="${y}"][@data-x="${x}"]`)
     if (await cell.waitForClickable()) {
       await cell.click()
     }
   }
 }
 
-export default new CellActions()
+export default new AttackStrategy()

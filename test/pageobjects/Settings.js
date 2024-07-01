@@ -2,7 +2,6 @@ import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
 import Checkbox from '../../framework/elements/Checkbox.js'
 import Link from '../../framework/elements/Link.js'
-import Browser from '../../framework/Browser.js'
 
 class Settings {
   constructor() {
@@ -25,29 +24,6 @@ class Settings {
 
   async isShootHintChecked() {
     return this.shootHintCheckbox.isSelected()
-  }
-
-  async turnOnCompactChat() {
-    return this.compactChatCheckbox.check()
-  }
-
-  async selectRandomOpponent() {
-    if (await this.randomOpponentLink.isClickable()) {
-      await this.randomOpponentLink.click()
-    }
-  }
-
-  async selectFriendOpponent() {
-    if (await this.friendOpponentLink.isClickable()) {
-      await this.friendOpponentLink.click()
-    }
-  }
-
-  async placeShipsRandomly() {
-    const clicks = Math.floor(Math.random() * 15) + 1
-    for (let i = 0; i < clicks; i++) {
-      await this.randomizeButton.click()
-    }
   }
 }
 

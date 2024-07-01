@@ -129,11 +129,15 @@ class BaseElement {
     return result
   }
 
-  async getAttribute(attributeName) {
+  async getAttribute(attributeName, log = true) {
     const element = await this.getElement()
-    Logger.debug(`Getting ${attributeName} attribute from ${this.name}`)
+    if (log) {
+      Logger.debug(`Getting ${attributeName} attribute from ${this.name}`)
+    }
     const result = await element.getAttribute(attributeName)
-    Logger.debug(`${attributeName} attribute from ${this.name}: ${result}`)
+    if (log) {
+      Logger.debug(`${attributeName} attribute from ${this.name}: ${result}`)
+    }
     return result
   }
 
