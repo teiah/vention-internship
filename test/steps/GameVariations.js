@@ -8,7 +8,7 @@ import Settings from '../pageobjects/Settings.js'
 class GameVariations {
   async prepDefaultGame() {
     Logger.logStep('Switch to the English version and verify that it was selected.')
-    await LanguageMenu.selectEnglish()
+    await SelectSettings.selectEnglish()
     assert.equal(await Browser.getCurrentUrl(), 'https://battleship-game.org/en/', 'English site version should be shown')
 
     Logger.logStep('Verify that the "Mark verified empty cells" checkbox is checked')

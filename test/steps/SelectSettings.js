@@ -1,7 +1,24 @@
 import Settings from '../pageobjects/Settings.js'
 import Browser from '../../framework/Browser.js'
+import Timeouts from '../constants/timeouts.js'
+import LanguageMenu from '../pageobjects/LanguageMenu.js'
 
 class SelectSettings {
+  async selectEnglish() {
+    await LanguageMenu.languageList.click()
+    await LanguageMenu.englishLanguage.click()
+    await Browser.waitUntil(
+      async () => {
+        const url = await Browser.getCurrentUrl()
+        return url.includes('en')
+      },
+      {
+        timeout: Timeouts.SHORT_TIMEOUT,
+        timeoutMsg: 'English page did not load after 2 seconds',
+      },
+    )
+  }
+
   async placeShipsRandomly() {
     const clicks = Math.floor(Math.random() * 15) + 1
     for (let i = 0; i < clicks; i++) {
