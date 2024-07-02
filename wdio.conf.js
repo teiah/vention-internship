@@ -1,12 +1,15 @@
-import path from 'node:path'
-import url from 'node:url'
 import Logger from './framework/logger/Logger.js'
 import { browser } from '@wdio/globals'
+import dotenv from 'dotenv'
+import * as path from 'node:path'
+import * as url from 'node:url'
+dotenv.config()
+
+const BROWSER_NAME = process.env.BROWSER_NAME || 'chrome'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+export const defaultDownloadPath = path.join(__dirname, process.env.DEFAULT_DOWNLOAD_PATH || 'downloads')
 
-export const defaultDownloadPath = path.join(__dirname, 'downloads')
-const BROWSER_NAME = process.env.BROWSER_NAME || 'chrome'
 export const config = {
   //
   // ====================
