@@ -1,8 +1,44 @@
-import { $ } from '@wdio/globals'
+import { $, $$ } from '@wdio/globals'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
+import Battlefield from '../pageobjects/Battlefield.js'
+import Label from '../../framework/elements/Label.js'
+import GameMechanics from './GameMechanics.js'
 
 class AttackStrategy {
+  async getBattlefieldState() {
+    const battlefield = []
+    const rowCount = await $$(Battlefield.rowLabel.selector).length
+    const colCount = await $$(`${Battlefield.rowLabel.selector}[1]${Battlefield.cellLabel.selector}`).length
+
+    for (let rowIndex = 1; rowIndex <= rowCount; rowIndex++) {
+      const rowArray = []
+      for (let cellIndex = 1; cellIndex <= colCount; cellIndex++) {
+        const cell = this.getCellByIndices(rowIndex, cellIndex)
+
+        let state
+        const classes = await cell.getAttribute('class', false)
+
+        if (classes.includes(States.EMPTY)) {
+          state = States.EMPTY
+        } else if (classes.includes(States.MISS)) {
+          state = States.MISS
+        } else if (classes.includes(States.HIT)) {
+          state = States.HIT
+        }
+        rowArray.push(state)
+      }
+      battlefield.push(rowArray)
+    }
+    Logger.debug('Battlefield state:\n' + GameMechanics.formatBattlefield(battlefield))
+    return battlefield
+  }
+
+  getCellByIndices(rowIndex, cellIndex) {
+    const cellXPath = `${Battlefield.rowLabel.selector}[${rowIndex}]${Battlefield.cellLabel.selector}[${cellIndex}]`
+    return new Label('Cell', cellXPath)
+  }
+
   getBestCell(battlefield) {
     const numRows = battlefield.length
     const numCols = battlefield[0].length
@@ -59,8 +95,9 @@ class AttackStrategy {
 
   async attackCell(x, y) {
     Logger.info(`Attacking cell x='${x}',y='${y}'`)
-    const cell = await $(
-      `//div[@class="battlefield battlefield__rival"]//tr[@class="battlefield-row"]//div[@class="battlefield-cell-content"][@data-y="${y}"][@data-x="${x}"]`)
+    // const cell = this.getCellByIndices(y + 1, x + 1)
+    // this works too, but it's much slower
+    const cell = await $(`${Battlefield.rowLabel.selector}//div[@data-y="${y}"][@data-x="${x}"]`)
     if (await cell.waitForClickable()) {
       await cell.click()
     }

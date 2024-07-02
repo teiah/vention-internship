@@ -1,10 +1,8 @@
 import Statuses from '../constants/statuses.js'
 import NotificationBox from '../pageobjects/NotificationBox.js'
-import Battlefield from '../pageobjects/Battlefield.js'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
-import Label from '../../framework/elements/Label.js'
-import { $$, browser } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 import AttackStrategy from './AttackStrategy.js'
 
 class GameMechanics {
@@ -34,40 +32,6 @@ class GameMechanics {
     }
   }
 
-  async getBattlefieldState() {
-    const battlefield = []
-    const rowCount = await $$(Battlefield.rowLabel.selector).length
-    const colCount = await $$(`${Battlefield.rowLabel.selector}[1]${Battlefield.cellLabel.selector}`).length
-
-    for (let rowIndex = 1; rowIndex <= rowCount; rowIndex++) {
-      const rowArray = []
-      for (let cellIndex = 1; cellIndex <= colCount; cellIndex++) {
-        const cell = this.getCellByIndices(rowIndex, cellIndex)
-
-        let state
-        const classes = await cell.getAttribute('class', false)
-
-        if (classes.includes('battlefield-cell__empty')) {
-          state = States.EMPTY
-        }
-        if (classes.includes('battlefield-cell__miss')) {
-          state = States.MISS
-        } else if (classes.includes('battlefield-cell__hit')) {
-          state = States.HIT
-        }
-        rowArray.push(state)
-      }
-      battlefield.push(rowArray)
-    }
-    Logger.debug('Battlefield state:\n' + this.formatBattlefield(battlefield))
-    return battlefield
-  }
-
-  getCellByIndices(rowIndex, cellIndex) {
-    const cellXPath = `${Battlefield.rowLabel.selector}[${rowIndex}]${Battlefield.cellLabel.selector}[${cellIndex}]`
-    return new Label('Cell', cellXPath)
-  }
-
   formatBattlefield(battlefield) {
     return battlefield
       .map((row) =>
@@ -90,7 +54,7 @@ class GameMechanics {
     let gameStatus = await this.getGameStatus()
     do {
       if (gameStatus === Statuses.YOUR_TURN || gameStatus === Statuses.START_YOUR_TURN) {
-        const battlefieldState = await this.getBattlefieldState()
+        const battlefieldState = await AttackStrategy.getBattlefieldState()
         const { x, y } = AttackStrategy.getBestCell(battlefieldState)
         await AttackStrategy.attackCell(x, y)
       }

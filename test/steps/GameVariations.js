@@ -1,9 +1,9 @@
 import Logger from '../../framework/logger/Logger.js'
 import SelectSettings from './SelectSettings.js'
-import LanguageMenu from '../pageobjects/LanguageMenu.js'
 import { assert } from 'chai'
 import Browser from '../../framework/Browser.js'
 import Settings from '../pageobjects/Settings.js'
+import GamePage from '../pageobjects/GamePage.js'
 
 class GameVariations {
   async prepDefaultGame() {
@@ -19,6 +19,9 @@ class GameVariations {
 
     Logger.logStep('Randomly arrange ships by clicking the "Randomise" link a random number of times (between 1 and 15).')
     await SelectSettings.placeShipsRandomly()
+
+    Logger.logStep('Click "Play" and wait for another player to connect.')
+    await GamePage.startGame()
   }
 }
 
