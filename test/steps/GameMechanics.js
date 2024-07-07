@@ -1,35 +1,14 @@
 import Statuses from '../constants/statuses.js'
-import NotificationBox from '../pageobjects/NotificationBox.js'
+import NotificationBox from '../pageobjects/NotificationBoxForm.js'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
 import { browser } from '@wdio/globals'
 import AttackStrategy from './AttackStrategy.js'
+import BattlefieldForm from '../pageobjects/BattlefieldForm.js'
 
 class GameMechanics {
   async getGameStatus() {
-    const status = await NotificationBox.getNotificationText()
-    switch (status) {
-      case 'The game started, your turn.':
-        return Statuses.START_YOUR_TURN
-      case 'Your turn.':
-        return Statuses.YOUR_TURN
-      case 'Waiting for opponent.':
-        return Statuses.WAIT_FOR_OPPONENT
-      case "The game began, opponent's turn.":
-        return Statuses.START_OPPONENT_TURN
-      case "Opponent's turn, please wait.":
-        return Statuses.OPPONENT_TURN
-      case 'Your opponent has left the game.':
-        return Statuses.OPPONENT_LEFT_GAME
-      case 'Game over. Congratulations, you won!':
-        return Statuses.GAME_WON
-      case 'Game over. You lose.':
-        return Statuses.GAME_LOST
-      case 'Unexpected error. Further play is impossible.':
-        return Statuses.ERROR
-      case 'Connecting to server.':
-        return Statuses.CONNECTING
-    }
+    return NotificationBox.getNotificationText()
   }
 
   formatBattlefield(battlefield) {
@@ -56,7 +35,7 @@ class GameMechanics {
       if (gameStatus === Statuses.YOUR_TURN || gameStatus === Statuses.START_YOUR_TURN) {
         const battlefieldState = await AttackStrategy.getBattlefieldState()
         const { x, y } = AttackStrategy.getBestCell(battlefieldState)
-        await AttackStrategy.attackCell(x, y)
+        await BattlefieldForm.attackCell(y, x)
       }
       // eslint-disable-next-line wdio/no-pause
       await browser.pause(500)

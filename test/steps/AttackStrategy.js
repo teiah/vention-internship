@@ -1,20 +1,18 @@
-import { $, $$ } from '@wdio/globals'
 import Logger from '../../framework/logger/Logger.js'
 import States from '../constants/states.js'
-import Battlefield from '../pageobjects/Battlefield.js'
-import Label from '../../framework/elements/Label.js'
 import GameMechanics from './GameMechanics.js'
+import BattlefieldForm from '../pageobjects/./BattlefieldForm.js'
 
 class AttackStrategy {
   async getBattlefieldState() {
     const battlefield = []
-    const rowCount = await $$(Battlefield.rowLabel.selector).length
-    const colCount = await $$(`${Battlefield.rowLabel.selector}[1]${Battlefield.cellLabel.selector}`).length
+    const rowCount = 10
+    const colCount = 10
 
-    for (let rowIndex = 1; rowIndex <= rowCount; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
       const rowArray = []
-      for (let cellIndex = 1; cellIndex <= colCount; cellIndex++) {
-        const cell = this.getCellByIndices(rowIndex, cellIndex)
+      for (let cellIndex = 0; cellIndex < colCount; cellIndex++) {
+        const cell = BattlefieldForm.getCellByIndices(rowIndex, cellIndex)
 
         let state
         const classes = await cell.getAttribute('class', false)
@@ -32,11 +30,6 @@ class AttackStrategy {
     }
     Logger.debug('Battlefield state:\n' + GameMechanics.formatBattlefield(battlefield))
     return battlefield
-  }
-
-  getCellByIndices(rowIndex, cellIndex) {
-    const cellXPath = `${Battlefield.rowLabel.selector}[${rowIndex}]${Battlefield.cellLabel.selector}[${cellIndex}]`
-    return new Label('Cell', cellXPath)
   }
 
   getBestCell(battlefield) {
@@ -89,18 +82,7 @@ class AttackStrategy {
         }
       }
     }
-
     return score
-  }
-
-  async attackCell(x, y) {
-    Logger.info(`Attacking cell x='${x}',y='${y}'`)
-    // const cell = this.getCellByIndices(y + 1, x + 1)
-    // this works too, but it's much slower
-    const cell = await $(`${Battlefield.rowLabel.selector}//div[@data-y="${y}"][@data-x="${x}"]`)
-    if (await cell.waitForClickable()) {
-      await cell.click()
-    }
   }
 }
 

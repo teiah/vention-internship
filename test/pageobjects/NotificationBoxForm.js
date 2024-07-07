@@ -1,11 +1,11 @@
 import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
 
-class NotificationBox {
+class NotificationBoxForm {
   constructor() {
     this.notificationMessage = new Label('Notification message', '.notifications .notification:not(.none) .notification-message')
     this.restartButton = new Button('Restart game button', '//div[@class="notification-submit restart"]')
-    this.field = new Label('Notification field', 'div[class*="notification "]')
+    this.fieldLabel = new Label('Notification field', 'div[class*="notification "]')
   }
 
   async isNotificationTextDisplayed() {
@@ -21,7 +21,7 @@ class NotificationBox {
   }
 
   async getNotificationColor() {
-    return this.field.getCssProperty('background-color')
+    return this.fieldLabel.getCssProperty('background-color')
   }
 
   async getNotificationText() {
@@ -29,4 +29,4 @@ class NotificationBox {
   }
 }
 
-export default new NotificationBox()
+export default new NotificationBoxForm()
