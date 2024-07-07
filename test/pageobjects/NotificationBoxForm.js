@@ -25,7 +25,7 @@ class NotificationBoxForm {
   }
 
   async getNotificationText() {
-    return this.notificationMessage.getText(false)
+    return this.notificationMessage.getText()
   }
 }
 

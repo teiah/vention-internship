@@ -15,7 +15,7 @@ class AttackStrategy {
         const cell = BattlefieldForm.getCellByIndices(rowIndex, cellIndex)
 
         let state
-        const classes = await cell.getAttribute('class', false)
+        const classes = await cell.getAttribute('class')
 
         if (classes.includes(States.EMPTY)) {
           state = States.EMPTY

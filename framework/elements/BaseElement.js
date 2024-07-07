@@ -109,15 +109,11 @@ class BaseElement {
     return result
   }
 
-  async getText(log = true) {
+  async getText() {
     const element = await this.getElement()
-    if (log) {
-      Logger.debug(`Getting the text from ${this.name}`)
-    }
+    Logger.trace(`Getting the text from ${this.name}`)
     const result = await element.getText()
-    if (log) {
-      Logger.debug(`Text from ${this.name}: ${result}`)
-    }
+    Logger.trace(`Text from ${this.name}: ${result}`)
     return result
   }
 
@@ -129,15 +125,11 @@ class BaseElement {
     return result
   }
 
-  async getAttribute(attributeName, log = true) {
+  async getAttribute(attributeName) {
     const element = await this.getElement()
-    if (log) {
-      Logger.debug(`Getting ${attributeName} attribute from ${this.name}`)
-    }
+    Logger.trace(`Getting ${attributeName} attribute from ${this.name}`)
     const result = await element.getAttribute(attributeName)
-    if (log) {
-      Logger.debug(`${attributeName} attribute from ${this.name}: ${result}`)
-    }
+    Logger.trace(`${attributeName} attribute from ${this.name}: ${result}`)
     return result
   }
 
