@@ -9,7 +9,7 @@ class Browser {
 
   async getCurrentUrl() {
     Logger.debug(`Getting current URL`)
-    const currentUrl = browser.getUrl()
+    const currentUrl = await browser.getUrl()
     Logger.debug(`Current URL: ${currentUrl}`)
     return currentUrl
   }

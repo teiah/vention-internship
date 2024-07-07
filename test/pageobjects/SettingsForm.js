@@ -2,14 +2,15 @@ import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
 import Checkbox from '../../framework/elements/Checkbox.js'
 import Link from '../../framework/elements/Link.js'
+import LanguageMenu from './LanguageMenu.js'
 
-class Settings {
+class SettingsForm {
   constructor() {
-    this.box = new Label('Settings box', '//dl[@class="settings clearfix"]')
+    this.boxLabel = new Label('SettingsForm box', '//dl[@class="settings clearfix"]')
     this.randomizeButton = new Button('Randomize Button', '//span[@class="placeships-variant-link"and text()="Randomise"]')
     this.resetButton = new Button('Reset', '//span[@class="placeships-variant-link" and text()="Reset"]')
     this.archiveButton = new Button('Archive Button', '//span[@class="placeships-variant-link" and text()="Archive"]')
-    this.settingsLabel = new Label('Settings Label', '//dt[@class="settings-label"]')
+    this.settingsLabel = new Label('SettingsForm Label', '//dt[@class="settings-label"]')
     this.shootHintLabel = new Label('Shoot hint label', 'label[@for="setting__shoothint"]')
     this.shootHintCheckbox = new Checkbox('Shoot hint checkbox', '//input[@id="setting__shoothint"]')
     this.compactChatLabel = new Label('Compact chat label', '//label[@for="setting__compactchat"]')
@@ -25,6 +26,46 @@ class Settings {
   async isShootHintChecked() {
     return this.shootHintCheckbox.isSelected()
   }
+
+  async selectLanguage(language) {
+    await LanguageMenu.openLanguageList()
+    await LanguageMenu.clickLanguage(language)
+  }
+
+  async placeShipsRandomly() {
+    const clicks = Math.floor(Math.random() * 15) + 1
+    for (let i = 0; i < clicks; i++) {
+      await this.randomizeButton.click()
+    }
+  }
+
+  async turnOnShootHint() {
+    await this.shootHintCheckbox.check()
+  }
+
+  async turnOffShootHint() {
+    await this.shootHintCheckbox.uncheck()
+  }
+
+  async turnOnCompactChat() {
+    await this.compactChatCheckbox.check()
+  }
+
+  async turnOffCompactChat() {
+    await this.compactChatCheckbox.uncheck()
+  }
+
+  async turnOnDesktopNotifications() {
+    await this.desktopNotificationsCheckbox.check()
+  }
+
+  async chooseRandomOpponent() {
+    await this.randomOpponentLink.check()
+  }
+
+  async chooseFriendOpponent() {
+    await this.friendOpponentLink.check()
+  }
 }
 
-export default new Settings()
+export default new SettingsForm()
