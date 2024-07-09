@@ -19,10 +19,17 @@ class GameVariations {
     await SettingsForm.chooseRandomOpponent()
 
     Logger.logStep('Randomly arrange ships by clicking the "Randomise" link a random number of times (between 1 and 15).')
-    await SettingsForm.placeShipsRandomly()
+    await this.placeShipsRandomly()
 
     Logger.logStep('Click "Play" and wait for another player to connect.')
-    await GamePage.startGame()
+    await GamePage.clickPlayButton()
+  }
+
+  async placeShipsRandomly() {
+    const clicks = Math.floor(Math.random() * 15) + 1
+    for (let i = 0; i < clicks; i++) {
+      await SettingsForm.randomizeButton.click()
+    }
   }
 }
 

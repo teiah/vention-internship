@@ -2,7 +2,6 @@ import Label from '../../framework/elements/Label.js'
 import Button from '../../framework/elements/Button.js'
 import Checkbox from '../../framework/elements/Checkbox.js'
 import Link from '../../framework/elements/Link.js'
-import LanguageMenu from './LanguageMenu.js'
 
 class SettingsForm {
   constructor() {
@@ -25,18 +24,6 @@ class SettingsForm {
 
   async isShootHintChecked() {
     return this.shootHintCheckbox.isSelected()
-  }
-
-  async selectLanguage(language) {
-    await LanguageMenu.openLanguageList()
-    await LanguageMenu.clickLanguage(language)
-  }
-
-  async placeShipsRandomly() {
-    const clicks = Math.floor(Math.random() * 15) + 1
-    for (let i = 0; i < clicks; i++) {
-      await this.randomizeButton.click()
-    }
   }
 
   async turnOnShootHint() {
