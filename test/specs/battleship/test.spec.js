@@ -5,11 +5,11 @@ import GameVariations from '../../steps/GameVariations.js'
 import GameMechanics from '../../steps/GameMechanics.js'
 import { assert } from 'chai'
 
-const gameUrl = 'https://battleship-game.org/zh'
+const GAME_URL = 'https://battleship-game.org/zh'
 
 describe('Battleship Game - Battlefield', function () {
   it('should win a game of Battleship', async function () {
-    await Browser.open(gameUrl)
+    await Browser.open(GAME_URL)
 
     Logger.logStep('Preparing game.')
     await GameVariations.prepDefaultGame()

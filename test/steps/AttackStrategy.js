@@ -3,17 +3,18 @@ import States from '../constants/states.js'
 import GameMechanics from './GameMechanics.js'
 import BattlefieldForm from '../pageobjects/./BattlefieldForm.js'
 
+const ROW_COUNT = 10
+const COL_COUNT = 10
+
 class AttackStrategy {
   async getBattlefieldState() {
     const battlefield = []
-    const rowCount = 10
-    const colCount = 10
-
-    for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < ROW_COUNT; rowIndex++) {
       const rowArray = []
       for (let cellIndex = 0; cellIndex < colCount; cellIndex++) {
         const cell = BattlefieldForm.getCellByIndices(rowIndex, cellIndex)
 
+      for (let cellIndex = 0; cellIndex < COL_COUNT; cellIndex++) {
         let state
         const classes = await cell.getAttribute('class')
 
