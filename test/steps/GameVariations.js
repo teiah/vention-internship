@@ -4,11 +4,12 @@ import Browser from '../../framework/Browser.js'
 import GamePage from '../pageobjects/GamePage.js'
 import Languages from '../constants/languages.js'
 import SettingsForm from '../pageobjects/SettingsForm.js'
+import LanguageMenuForm from '../pageobjects/LanguageMenuForm.js'
 
 class GameVariations {
   async prepDefaultGame() {
     Logger.logStep('Switch to the English version and verify that it was selected.')
-    await SettingsForm.selectLanguage(Languages.ENGLISH.name)
+    await LanguageMenuForm.selectLanguage(Languages.ENGLISH.name)
     assert.include(await Browser.getCurrentUrl(), Languages.ENGLISH.code, 'English site version should be shown')
 
     Logger.logStep('Verify that the "Mark verified empty cells" checkbox is checked')
