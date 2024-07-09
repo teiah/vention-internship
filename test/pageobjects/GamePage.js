@@ -7,15 +7,7 @@ class GamePage {
     this.playButton = new Button('Play button', '//div[@class="battlefield-start-button"]')
   }
 
-  async isLogoDisplayed() {
-    return this.logo.isDisplayed()
-  }
-
-  async getLogoText() {
-    return this.logo.getText()
-  }
-
-  async startGame() {
+  async clickPlayButton() {
     return this.playButton.click()
   }
 }
