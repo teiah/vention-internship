@@ -42,7 +42,6 @@ class GameMechanics {
 
       const newStatus = await this.getGameStatus()
       if (newStatus !== gameStatus) {
-        Logger.info('Game status: ' + newStatus)
         gameStatus = newStatus
       }
     } while (

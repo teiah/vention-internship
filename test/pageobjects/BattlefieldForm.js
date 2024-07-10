@@ -7,8 +7,8 @@ class BattlefieldForm {
     return new Label('Cell', cellXPath)
   }
 
-  async getCellState(rowIndex, cellIndex) {
-    const cell = await this._getCellByIndices(rowIndex, cellIndex)
+  async getCellClasses(rowIndex, cellIndex) {
+    const cell = this._getCellByIndices(rowIndex, cellIndex)
     return cell.getAttribute('class')
   }
 

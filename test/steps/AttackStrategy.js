@@ -12,7 +12,7 @@ class AttackStrategy {
     for (let rowIndex = 0; rowIndex < ROW_COUNT; rowIndex++) {
       const rowArray = []
       for (let cellIndex = 0; cellIndex < COL_COUNT; cellIndex++) {
-        const classes = await BattlefieldForm.getCellState(rowIndex, cellIndex)
+        const classes = await BattlefieldForm.getCellClasses(rowIndex, cellIndex)
         let state
         if (classes.includes(States.EMPTY)) {
           state = States.EMPTY
