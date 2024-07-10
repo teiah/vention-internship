@@ -111,9 +111,9 @@ class BaseElement {
 
   async getText() {
     const element = await this.getElement()
-    Logger.trace(`Getting the text from ${this.name}`)
+    Logger.debug(`Getting the text from ${this.name}`)
     const result = await element.getText()
-    Logger.trace(`Text from ${this.name}: ${result}`)
+    Logger.debug(`Text from ${this.name}: ${result}`)
     return result
   }
 
@@ -127,9 +127,9 @@ class BaseElement {
 
   async getAttribute(attributeName) {
     const element = await this.getElement()
-    Logger.trace(`Getting ${attributeName} attribute from ${this.name}`)
+    Logger.debug(`Getting ${attributeName} attribute from ${this.name}`)
     const result = await element.getAttribute(attributeName)
-    Logger.trace(`${attributeName} attribute from ${this.name}: ${result}`)
+    Logger.debug(`${attributeName} attribute from ${this.name}: ${result}`)
     return result
   }
 
