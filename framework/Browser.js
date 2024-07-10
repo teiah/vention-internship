@@ -1,5 +1,6 @@
 import { browser } from '@wdio/globals'
 import Logger from './logger/Logger.js'
+import Timeouts from '../test/constants/timeouts.js'
 
 class Browser {
   async open(url) {
@@ -143,9 +144,13 @@ class Browser {
     await browser.sendAlertText(text)
   }
 
-  async waitUntil(condition, { timeout = 5000, interval = 500 } = {}) {
-    Logger.debug(`Waiting until condition is met with timeout: ${timeout}ms and interval: ${interval}ms`)
-    await browser.waitUntil(condition, { timeout, interval })
+  async waitUntil(condition, { timeout = Timeouts.SHORT_TIMEOUT, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {
+    try {
+      Logger.debug(`Waiting until condition is met with timeout: ${timeout}ms and interval: ${interval}ms`)
+      await browser.waitUntil(condition, { timeout, interval })
+    } catch (e) {
+      return false
+    }
   }
 }
 
