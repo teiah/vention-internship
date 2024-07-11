@@ -1,5 +1,5 @@
 import { Timeouts } from '../../test/constants/timeouts.js'
-import { $ } from '@wdio/globals'
+import { $, $$ } from '@wdio/globals'
 import Logger from '../logger/Logger.js'
 
 class BaseElement {
@@ -10,6 +10,10 @@ class BaseElement {
 
   async getElement() {
     return $(this.selector)
+  }
+
+  async getElements() {
+    return $$(this.selector)
   }
 
   async waitForExist({ timeout = Timeouts.DEFAULT_WAIT_TIMEOUT, reverse = false, interval = Timeouts.WAIT_FOR_INTERVAL } = {}) {

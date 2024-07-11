@@ -1,11 +1,14 @@
-import path from 'node:path'
-import url from 'node:url'
 import Logger from './framework/logger/Logger.js'
 import { browser } from '@wdio/globals'
+import dotenv from 'dotenv'
+import * as path from 'node:path'
+import * as url from 'node:url'
+dotenv.config()
+
+const BROWSER_NAME = process.env.BROWSER_NAME || 'chrome'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
-
-export const defaultDownloadPath = path.join(__dirname, 'downloads')
+export const defaultDownloadPath = path.join(__dirname, process.env.DEFAULT_DOWNLOAD_PATH || 'downloads')
 
 export const config = {
   //
@@ -50,7 +53,7 @@ export const config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -58,14 +61,17 @@ export const config = {
   //
   capabilities: [
     {
-      browserName: 'chrome',
+      maxInstances: 1,
+      browserName: BROWSER_NAME,
       'goog:chromeOptions': {
         prefs: {
           download: {
             default_directory: defaultDownloadPath,
           },
         },
+        args: ['--disable-features=SidePanelPinning'],
       },
+      'moz:firefoxOptions': {},
     },
   ],
 
@@ -76,7 +82,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: 'error',
+  logLevel: process.env.LOG_LEVEL || 'debug',
   //
   // Set specific log levels per logger
   // loggers:
@@ -116,7 +122,7 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  // services: ['eslinter'],
+  // services:
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -154,7 +160,7 @@ export const config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: 'bdd',
-    timeout: 60000,
+    timeout: 600000,
   },
   //
   // =====
