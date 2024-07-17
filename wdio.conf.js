@@ -3,6 +3,9 @@ import { browser } from '@wdio/globals'
 import dotenv from 'dotenv'
 import * as path from 'node:path'
 import * as url from 'node:url'
+import Browser from './framework/Browser.js'
+import { assert } from 'chai'
+import Strings from './test/constants/strings.js'
 dotenv.config()
 
 const BROWSER_NAME = process.env.BROWSER_NAME || 'chrome'
@@ -106,7 +109,7 @@ export const config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  // baseUrl: 'http://localhost:8080',
+  baseUrl: 'https://emag.bg',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
