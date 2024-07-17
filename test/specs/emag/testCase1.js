@@ -7,7 +7,9 @@ import ItemGroupPage from '../../pageobjects/ItemGroupPage.js'
 import Manufacturers from '../../constants/manufacturers.js'
 import Departments from '../../constants/departments.js'
 import Categories from '../../constants/categories.js'
-import ManufacturerFilterForm from '../../pageobjects/ManufacturerFilterForm.js'
+import sortOptions from '../../constants/sortOptions.js'
+import Steps from '../../steps/Steps.js'
+import Assertions from '../../steps/Assertions.js'
 
 describe('Search and Filter Functionality on eMAG.bg', function () {
   it('should filter and sort Samsung products correctly', async function () {
@@ -21,7 +23,11 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     assert.equal(await ItemGroupPage.getPageHeader(), Categories['Mobile Phones'].bg, 'Page header does not match.')
 
     Logger.logStep('Filter products by brand - "Samsung" and check if each product on the first two pages matches the search')
-    await filterByManufacturer(Manufacturers.SAMSUNG)
-    await assertProductTitlesIncludeManufacturer(Manufacturers.SAMSUNG, 2)
+    await Steps.filterByManufacturer(Manufacturers.SAMSUNG)
+    await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.SAMSUNG, 2)
+
+    Logger.logStep('Sort the results by price in descending order')
+    await Steps.sortProductsBy(sortOptions.PriceDesc)
+    await Assertions.assertProductsAreSortedByDescPrice()
   })
 })
