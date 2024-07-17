@@ -1,4 +1,4 @@
-import Link from '../../framework/elements/Link.js'
+import Link from '../../../framework/elements/Link.js'
 import FilterForm from './FilterForm.js'
 
 class ManufacturerFilterForm extends FilterForm {

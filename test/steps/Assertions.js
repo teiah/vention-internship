@@ -1,7 +1,7 @@
-import ItemCardForm from '../pageobjects/ItemCardForm.js'
+import ItemCardForm from '../pageobjects/itemPage/ItemCardForm.js'
 import { assert } from 'chai'
-import ItemGroupPage from '../pageobjects/ItemGroupPage.js'
-import PriceCardForm from '../pageobjects/PriceCardForm.js'
+import ItemGroupPage from '../pageobjects/itemPage/ItemGroupPage.js'
+import PriceCardForm from '../pageobjects/itemPage/PriceCardForm.js'
 
 class Assertions {
   async assertProductTitlesIncludeManufacturer(manufacturer, numPages = 1) {

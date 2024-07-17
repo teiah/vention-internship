@@ -1,5 +1,5 @@
-import Button from '../../framework/elements/Button.js'
-import Link from '../../framework/elements/Link.js'
+import Button from '../../../framework/elements/Button.js'
+import Link from '../../../framework/elements/Link.js'
 
 class SortByForm {
   constructor() {

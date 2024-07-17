@@ -1,6 +1,6 @@
-import TextBox from '../../framework/elements/TextBox.js'
-import Checkbox from '../../framework/elements/Checkbox.js'
-import Button from '../../framework/elements/Button.js'
+import TextBox from '../../../framework/elements/TextBox.js'
+import Checkbox from '../../../framework/elements/Checkbox.js'
+import Button from '../../../framework/elements/Button.js'
 
 class FilterPopupForm {
   constructor() {

@@ -1,4 +1,4 @@
-import TextBox from '../../framework/elements/TextBox.js'
+import TextBox from '../../../framework/elements/TextBox.js'
 
 class FilterForm {
   _createFilterNameLabel(filterId) {

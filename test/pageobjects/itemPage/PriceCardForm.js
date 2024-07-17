@@ -1,4 +1,4 @@
-import Label from '../../framework/elements/Label.js'
+import Label from '../../../framework/elements/Label.js'
 import { $ } from '@wdio/globals'
 
 class PriceCardForm {

@@ -1,9 +1,9 @@
 import Browser from '../../framework/Browser.js'
 import Timeouts from '../constants/timeouts.js'
-import ManufacturerFilterForm from '../pageobjects/ManufacturerFilterForm.js'
-import FilterPopupForm from '../pageobjects/FilterPopupForm.js'
-import ItemGroupPage from '../pageobjects/ItemGroupPage.js'
-import SortByForm from '../pageobjects/SortByForm.js'
+import ManufacturerFilterForm from '../pageobjects/filters/ManufacturerFilterForm.js'
+import FilterPopupForm from '../pageobjects/filters/FilterPopupForm.js'
+import ItemGroupPage from '../pageobjects/itemPage/ItemGroupPage.js'
+import SortByForm from '../pageobjects/itemPage/SortByForm.js'
 
 class Steps {
   async filterByManufacturer(manufacturer) {

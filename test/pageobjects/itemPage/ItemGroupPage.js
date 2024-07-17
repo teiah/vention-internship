@@ -1,5 +1,5 @@
-import Label from '../../framework/elements/Label.js'
-import Link from '../../framework/elements/Link.js'
+import Label from '../../../framework/elements/Label.js'
+import Link from '../../../framework/elements/Link.js'
 
 class ItemGroupPage {
   constructor() {
