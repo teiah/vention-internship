@@ -26,7 +26,7 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     await Steps.filterByManufacturer(Manufacturers.SAMSUNG)
     await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.SAMSUNG, 2)
 
-    Logger.logStep('Sort the results by price in descending order')
+    Logger.logStep('Sort the products by price in descending order and check if pricing matches the sorting')
     await Steps.sortProductsBy(sortOptions.PriceDesc)
     await Assertions.assertProductsAreSortedByDescPrice()
   })
