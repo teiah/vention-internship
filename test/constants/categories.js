@@ -43,5 +43,14 @@ const Categories = {
     id: 3871,
     bg: 'Карти памет',
   },
+  'Air Conditioning': {
+    id: 3187,
+    bg: 'Климатици',
+  },
+  'Electric shavers': {
+    id: 3906,
+    bg: 'Ел. самобръсначки',
+    title: 'Електрически самобръсначки',
+  },
 }
 export default Categories
