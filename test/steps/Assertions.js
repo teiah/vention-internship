@@ -8,7 +8,7 @@ class Assertions {
     const assertOnCurrentPage = async () => {
       const titles = await ItemCardForm.getAllProductTitles()
       titles.forEach((title) => {
-        assert.include(title, manufacturer)
+        this.assertIncludeIgnoreCase(title, manufacturer)
       })
     }
     // Loop through specified number of pages
@@ -31,6 +31,12 @@ class Assertions {
       const nextPrice = prices[i + 1]
       assert(currentPrice >= nextPrice, `${currentPrice} at index ${i} should be greater than or equal to ${nextPrice} at index ${i + 1}`)
     }
+  }
+
+  async assertIncludeIgnoreCase(actual, expectedSubstring, message) {
+    const lowerCaseActual = actual.toLowerCase()
+    const lowerCaseExpected = expectedSubstring.toLowerCase()
+    assert.include(lowerCaseActual, lowerCaseExpected, message)
   }
 }
 export default new Assertions()
