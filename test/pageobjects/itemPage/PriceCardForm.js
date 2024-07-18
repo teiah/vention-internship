@@ -14,10 +14,16 @@ class PriceCardForm {
     const priceElements = await this.getAllPriceBoxes()
     const prices = []
     for (let i = 0; i < priceElements.length - 1; i++) {
-      const xpath = priceElements[i].selector + `[${i + 1}]/*[1]`
-      const rrpPrice = await $(xpath).getText()
+      const xpathRrp = priceElements[i].selector + `[${i + 1}]/*[1]`
+      let rrpPrice = await $(xpathRrp).getText()
 
-      const newPrice = await $(priceElements[i].selector + `[${i + 1}]/*[2]`).getText()
+      const xpathNew = await $(priceElements[i].selector + `[${i + 1}]/*[2]`)
+      const newPrice = await $(xpathNew).getText()
+
+      //additional logic for discounted products with their price as <s>
+      if (/^\d/.test(rrpPrice)) {
+        rrpPrice = newPrice
+      }
 
       const parsedRrpPrice = this._parsePrice(rrpPrice)
       const parsedNewPrice = this._parsePrice(newPrice)
