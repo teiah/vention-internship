@@ -3,9 +3,6 @@ import { browser } from '@wdio/globals'
 import dotenv from 'dotenv'
 import * as path from 'node:path'
 import * as url from 'node:url'
-import Browser from './framework/Browser.js'
-import { assert } from 'chai'
-import Strings from './test/constants/strings.js'
 dotenv.config()
 
 const BROWSER_NAME = process.env.BROWSER_NAME || 'chrome'

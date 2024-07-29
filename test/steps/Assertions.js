@@ -8,7 +8,8 @@ class Assertions {
     const assertOnCurrentPage = async () => {
       const titles = await ItemCardForm.getAllProductTitles()
       titles.forEach((title) => {
-        this.assertIncludeIgnoreCase(title, manufacturer)
+        const [lowerCaseTitle, lowerCaseManufacturer] = this.convertToLowerCase(title, manufacturer)
+        assert.include(lowerCaseTitle, lowerCaseManufacturer, `The title does not include ${manufacturer}.`)
       })
     }
     // Loop through specified number of pages
@@ -33,10 +34,10 @@ class Assertions {
     }
   }
 
-  async assertIncludeIgnoreCase(actual, expectedSubstring, message) {
+  async convertToLowerCase(actual, expected) {
     const lowerCaseActual = actual.toLowerCase()
-    const lowerCaseExpected = expectedSubstring.toLowerCase()
-    assert.include(lowerCaseActual, lowerCaseExpected, message)
+    const lowerCaseExpected = expected.toLowerCase()
+    return [lowerCaseActual, lowerCaseExpected]
   }
 }
 export default new Assertions()
