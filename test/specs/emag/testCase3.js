@@ -6,12 +6,12 @@ import Logger from '../../../framework/logger/Logger.js'
 import ItemGroupPage from '../../pageobjects/itemPage/ItemGroupPage.js'
 import Manufacturers from '../../constants/Manufacturers.js'
 import Departments from '../../constants/Departments.js'
-import Categories from '../../constants/Categories.js'
 import sortOptions from '../../constants/SortOptions.js'
 import Steps from '../../steps/Steps.js'
 import Assertions from '../../steps/Assertions.js'
 import CookiesForm from '../../pageobjects/CookiesForm.js'
 import LoginPromptForm from '../../pageobjects/LoginPromptForm.js'
+import Categories from '../../constants/Categories.js'
 
 describe('Search and Filter Functionality on eMAG.bg', function () {
   it('should filter and sort Braun products correctly', async function () {

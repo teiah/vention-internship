@@ -1,8 +1,4 @@
 const Categories = {
-  'Mobile Phones & Accessories': {
-    id: 3860,
-    bg: 'Мобилни телефони и аксесоари',
-  },
   'Mobile Phones': {
     id: 3861,
     bg: 'Мобилни телефони',
@@ -51,6 +47,10 @@ const Categories = {
     id: 3906,
     bg: 'Ел. самобръсначки',
     title: 'Електрически самобръсначки',
+  },
+  'VR Gaming Headsets': {
+    id: 3805,
+    bg: 'VR Gaming Очила',
   },
 }
 export default Categories

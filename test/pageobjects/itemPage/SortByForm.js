@@ -3,7 +3,7 @@ import Link from '../../../framework/elements/Link.js'
 
 class SortByForm {
   constructor() {
-    this.sortByButton = new Button('Sort by button', '//button[contains(@class,"btn-alt sort-control-btn")]')
+    this.sortByButton = new Button('Sort by button', '//button[contains(@class,"btn-alt sort-control-btn gtm_ejaugtrtnc")]')
   }
 
   _createSortOptionLink(optionId, sortDir) {

@@ -8,8 +8,7 @@ class Assertions {
     const assertOnCurrentPage = async () => {
       const titles = await ItemCardForm.getAllProductTitles()
       titles.forEach((title) => {
-        const [lowerCaseTitle, lowerCaseManufacturer] = this.convertToLowerCase(title, manufacturer)
-        assert.include(lowerCaseTitle, lowerCaseManufacturer, `The title does not include ${manufacturer}.`)
+        assert.include(title.toLowerCase(), manufacturer.toLowerCase(), `The title does not include ${manufacturer}.`)
       })
     }
     // Loop through specified number of pages
@@ -32,12 +31,6 @@ class Assertions {
       const nextPrice = prices[i + 1]
       assert(currentPrice >= nextPrice, `${currentPrice} at index ${i} should be greater than or equal to ${nextPrice} at index ${i + 1}`)
     }
-  }
-
-  async convertToLowerCase(actual, expected) {
-    const lowerCaseActual = actual.toLowerCase()
-    const lowerCaseExpected = expected.toLowerCase()
-    return [lowerCaseActual, lowerCaseExpected]
   }
 }
 export default new Assertions()
