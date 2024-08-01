@@ -1,4 +1,4 @@
-import { Timeouts } from '../../test/constants/timeouts.js'
+import { Timeouts } from '../../test/constants/Timeouts.js'
 import { $, $$ } from '@wdio/globals'
 import Logger from '../logger/Logger.js'
 

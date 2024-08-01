@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 import Logger from './logger/Logger.js'
-import Timeouts from '../test/constants/timeouts.js'
+import Timeouts from '../test/constants/Timeouts.js'
 
 class Browser {
   async open(url) {
