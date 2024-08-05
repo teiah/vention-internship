@@ -26,7 +26,7 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     Logger.logStep('Navigate to "Големи електроуреди – Климатици"')
     await CategoriesMenuBox.openCategory(Departments.LARGE_APPLIANCES, Categories.AIR_CONDITIONING)
     assert.include(await Browser.getPageTitle(), Categories.AIR_CONDITIONING.name, 'Category page title does not match.')
-    assert.equal(await ItemGroupPage.getPageHeader(), Categories.AIR_CONDITIONING.name, 'Page header does not match.')
+    assert.equal(await ItemGroupPage.getPageHeaderText(), Categories.AIR_CONDITIONING.name, 'Page header does not match.')
 
     Logger.logStep('Filter products by brand - "Daikin" and check if each product on the first two pages matches the search')
     await Steps.filterByManufacturer(Manufacturers.DAIKIN)

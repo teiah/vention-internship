@@ -19,10 +19,12 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
 
     Logger.logStep('Navigate to "Мобилни телефони"')
     await CategoriesMenuBox.openCategory(Departments.PHONES_TABLETS_LAPTOPS, Categories.MOBILE_PHONES)
-    assert.include(await Browser.getPageTitle(), Categories.MOBILE_PHONES.name, 'Category page title does not match.')
-    assert.equal(await ItemGroupPage.getPageHeader(), Categories.MOBILE_PHONES.name, 'Page header does not match.')
+    const pageTitleText = await Browser.getPageTitle()
+    assert.include(pageTitleText, Categories.MOBILE_PHONES.name, 'Category page title does not match.')
+    const pageHeaderText = await ItemGroupPage.getPageHeaderText()
+    assert.equal(pageHeaderText, Categories.MOBILE_PHONES.name, 'Page header does not match.')
 
-    Logger.logStep('Filter products by brand - "Samsung" and check if each product on the first two pages matches the search')
+    Logger.logStep('Filter products by brand "Samsung" and check if each product on the first two pages matches the search')
     await Steps.filterByManufacturer(Manufacturers.SAMSUNG)
     await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.SAMSUNG, 2)
 

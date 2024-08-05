@@ -7,7 +7,7 @@ class ItemGroupPage {
     this.currentPageLink = new Link('Current page link', "//li[@class='active']//a[@data-page]")
   }
 
-  async getPageHeader() {
+  async getPageHeaderText() {
     return this.pageHeader.getText()
   }
 
@@ -16,7 +16,7 @@ class ItemGroupPage {
     return new Link(`Page ${pageNumber}`, xpath)
   }
 
-  async goToPage(pageNumber) {
+  async clickPageNumber(pageNumber) {
     await this._createPageLink(pageNumber).click()
   }
 

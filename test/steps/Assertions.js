@@ -19,7 +19,7 @@ class Assertions {
       if (i < numPages - 1) {
         const currentPageNumber = await ItemGroupPage.getCurrentPageNumber()
         const nextPageNumber = parseInt(currentPageNumber, 10) + 1
-        await ItemGroupPage.goToPage(nextPageNumber)
+        await ItemGroupPage.clickPageNumber(nextPageNumber)
       }
     }
   }
