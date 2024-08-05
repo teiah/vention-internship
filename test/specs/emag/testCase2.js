@@ -24,16 +24,16 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     await LoginPromptForm.closeLoginPrompt()
 
     Logger.logStep('Navigate to "Големи електроуреди – Климатици"')
-    await CategoriesMenuBox.openCategory(Departments['Large Appliances'], Categories['Air Conditioning'].id)
-    assert.include(await Browser.getPageTitle(), Categories['Air Conditioning'].bg, 'Category page title does not match.')
-    assert.equal(await ItemGroupPage.getPageHeader(), Categories['Air Conditioning'].bg, 'Page header does not match.')
+    await CategoriesMenuBox.openCategory(Departments.LARGE_APPLIANCES, Categories.AIR_CONDITIONING)
+    assert.include(await Browser.getPageTitle(), Categories.AIR_CONDITIONING.name, 'Category page title does not match.')
+    assert.equal(await ItemGroupPage.getPageHeader(), Categories.AIR_CONDITIONING.name, 'Page header does not match.')
 
     Logger.logStep('Filter products by brand - "Daikin" and check if each product on the first two pages matches the search')
     await Steps.filterByManufacturer(Manufacturers.DAIKIN)
     await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.DAIKIN, 2)
 
     Logger.logStep('Sort the products by price in descending order and check if pricing matches the sorting')
-    await Steps.sortProductsBy(sortOptions.PriceDesc)
+    await Steps.sortProductsBy(sortOptions.PRICE_DESC)
     await Assertions.assertProductsAreSortedByDescPrice()
   })
 })

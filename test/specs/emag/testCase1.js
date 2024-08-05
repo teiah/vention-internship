@@ -18,16 +18,16 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     assert.equal(await Browser.getPageTitle(), Titles.HOMEPAGE_TAB_TITLE, 'Home page title does not match.')
 
     Logger.logStep('Navigate to "Мобилни телефони"')
-    await CategoriesMenuBox.openCategory(Departments['Phones, Tablets & Laptops'], Categories['Mobile Phones'].id)
-    assert.include(await Browser.getPageTitle(), Categories['Mobile Phones'].bg, 'Category page title does not match.')
-    assert.equal(await ItemGroupPage.getPageHeader(), Categories['Mobile Phones'].bg, 'Page header does not match.')
+    await CategoriesMenuBox.openCategory(Departments.PHONES_TABLETS_LAPTOPS, Categories.MOBILE_PHONES)
+    assert.include(await Browser.getPageTitle(), Categories.MOBILE_PHONES.name, 'Category page title does not match.')
+    assert.equal(await ItemGroupPage.getPageHeader(), Categories.MOBILE_PHONES.name, 'Page header does not match.')
 
     Logger.logStep('Filter products by brand - "Samsung" and check if each product on the first two pages matches the search')
     await Steps.filterByManufacturer(Manufacturers.SAMSUNG)
     await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.SAMSUNG, 2)
 
     Logger.logStep('Sort the products by price in descending order and check if pricing matches the sorting')
-    await Steps.sortProductsBy(sortOptions.PriceDesc)
+    await Steps.sortProductsBy(sortOptions.PRICE_DESC)
     await Assertions.assertProductsAreSortedByDescPrice()
   })
 })

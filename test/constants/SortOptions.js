@@ -1,31 +1,31 @@
 const SortOptions = {
-  MostPopular: {
+  MOST_POPULAR: {
     id: 'popularity_orders_default',
-    dir: 'desc',
+    direction: 'desc',
   },
-  Newest: {
+  NEWEST: {
     id: 'id',
-    dir: 'desc',
+    direction: 'desc',
     url: 'sort-iddesc',
   },
-  PriceAsc: {
+  PRICE_ASC: {
     id: 'price',
-    dir: 'asc',
+    direction: 'asc',
     url: 'sort-priceasc',
   },
-  PriceDesc: {
+  PRICE_DESC: {
     id: 'price',
-    dir: 'desc',
+    direction: 'desc',
     url: 'sort-pricedesc',
   },
-  ReviewNumber: {
+  REVIEW_NUMBER: {
     id: 'reviews',
-    dir: 'desc',
+    direction: 'desc',
     url: 'sort-reviewsdesc',
   },
-  Discount: {
+  DISCOUNT: {
     id: 'discount',
-    dir: 'desc',
+    direction: 'desc',
     url: 'sort-discountdesc',
   },
 }

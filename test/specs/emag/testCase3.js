@@ -24,16 +24,16 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     await LoginPromptForm.closeLoginPrompt()
 
     Logger.logStep('Navigate to "Здраве и красота – Ел. самобръсначки”"')
-    await CategoriesMenuBox.openCategory(Departments['Health & Beauty'], Categories['Electric shavers'].id)
-    assert.include(await Browser.getPageTitle(), Categories['Electric shavers'].title, 'Category page title does not match.')
-    assert.equal(await ItemGroupPage.getPageHeader(), Categories['Electric shavers'].bg, 'Page header does not match.')
+    await CategoriesMenuBox.openCategory(Departments.HEALTH_BEAUTY, Categories.ELECTRIC_SHAVERS)
+    assert.include(await Browser.getPageTitle(), Categories.ELECTRIC_SHAVERS.title, 'Category page title does not match.')
+    assert.equal(await ItemGroupPage.getPageHeader(), Categories.ELECTRIC_SHAVERS.bg, 'Page header does not match.')
 
     Logger.logStep('Filter products by brand - "Braun" and check if each product on the first two pages matches the search')
     await Steps.filterByManufacturer(Manufacturers.BRAUN)
     await Assertions.assertProductTitlesIncludeManufacturer(Manufacturers.BRAUN, 2)
 
     Logger.logStep('Sort the products by price in descending order and check if pricing matches the sorting')
-    await Steps.sortProductsBy(sortOptions.PriceDesc)
+    await Steps.sortProductsBy(sortOptions.PRICE_DESC)
     await Assertions.assertProductsAreSortedByDescPrice()
   })
 })

@@ -1,56 +1,59 @@
 const Categories = {
-  'Mobile Phones': {
+  MOBILE_PHONES: {
     id: 3861,
-    bg: 'Мобилни телефони',
+    name: 'Мобилни телефони',
+    url: 'mobilni-telefoni',
   },
-  'Cases for Mobile Phones': {
+  CASES_FOR_MOBILE_PHONES: {
     id: 3862,
-    bg: 'Калъфи за мобилни телефони',
+    name: 'Калъфи за мобилни телефони',
   },
-  'Screen Protectors for Mobile Phones': {
+  SCREEN_PROTECTORS_FOR_MOBILE_PHONES: {
     id: 3863,
-    bg: 'Защитни фолиа за мобилни телефони',
+    name: 'Защитни фолиа за мобилни телефони',
   },
-  'Chargers for Mobile Phones': {
+  CHARGERS_FOR_MOBILE_PHONES: {
     id: 3864,
-    bg: 'Зарядни устройства за мобилни телефони',
+    name: 'Зарядни устройства за мобилни телефони',
   },
-  'Batteries for Mobile Phones': {
+  BATTERIES_FOR_MOBILE_PHONES: {
     id: 3865,
-    bg: 'Батерии за мобилни телефони',
+    name: 'Батерии за мобилни телефони',
   },
-  'Bluetooth Headsets': {
+  BLUETOOTH_HEADSETS: {
     id: 3866,
-    bg: 'Bluetooth слушалки',
+    name: 'Bluetooth слушалки',
   },
-  'Data Cables for Mobile Phones': {
+  DATA_CABLES_FOR_MOBILE_PHONES: {
     id: 3867,
-    bg: 'Data кабели за мобилни телефони',
+    name: 'Data кабели за мобилни телефони',
   },
-  'Stands and Docking Stations for Mobile Phones': {
+  STANDS_AND_DOCKING_STATIONS_FOR_MOBILE_PHONES: {
     id: 3868,
-    bg: 'Поставки и докинг станции за мобилни телефони',
+    name: 'Поставки и докинг станции за мобилни телефони',
   },
-  'External Batteries for Mobile Phones': {
+  EXTERNAL_BATTERIES_FOR_MOBILE_PHONES: {
     id: 3869,
-    bg: 'Външни батерии за мобилни телефони',
+    name: 'Външни батерии за мобилни телефони',
   },
-  'Memory Cards': {
+  MEMORY_CARDS: {
     id: 3871,
-    bg: 'Карти памет',
+    name: 'Карти памет',
   },
-  'Air Conditioning': {
+  AIR_CONDITIONING: {
     id: 3187,
-    bg: 'Климатици',
+    name: 'Климатици',
+    url: 'klimatici',
   },
-  'Electric shavers': {
+  ELECTRIC_SHAVERS: {
     id: 3906,
-    bg: 'Ел. самобръсначки',
+    name: 'Ел. самобръсначки',
     title: 'Електрически самобръсначки',
+    url: 'elektricheski-samobrysnachki',
   },
-  'VR Gaming Headsets': {
+  VR_GAMING_HEADSETS: {
     id: 3805,
-    bg: 'VR Gaming Очила',
+    name: 'VR Gaming Очила',
   },
 }
 export default Categories

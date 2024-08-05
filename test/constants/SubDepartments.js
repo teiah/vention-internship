@@ -1,9 +1,5 @@
 const SubDepartments = {
-  'Mobile Phones & Accessories': {
-    id: 3860,
-    bg: 'Мобилни телефони и аксесоари',
-  },
-  'Gaming consoles': {
+  GAMING_CONSOLES: {
     id: 3821,
     bg: 'Гейминг конзоли',
   },
