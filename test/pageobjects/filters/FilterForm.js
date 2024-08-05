@@ -1,10 +1,14 @@
-import TextBox from '../../../framework/elements/TextBox.js'
+import Link from '../../../framework/elements/Link.js'
 
 class FilterForm {
-  _createFilterNameLabel(filterId) {
-    const xpath = `//div[@data-filter-id="${filterId}"]`
-    return new TextBox(`${filterId}`, xpath)
+  constructor(id) {
+    this.id = id
+    this.seeMoreLink = new Link('See more button', `//a[@data-filter-id=${this.id}]`)
+  }
+
+  async clickSeeMoreLink() {
+    await this.seeMoreLink.waitForClickable()
+    await this.seeMoreLink.click()
   }
 }
-
 export default FilterForm

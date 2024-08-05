@@ -3,9 +3,10 @@ import Checkbox from '../../../framework/elements/Checkbox.js'
 import Button from '../../../framework/elements/Button.js'
 
 class FilterPopupForm {
-  constructor() {
-    this.searchField = new TextBox('Search field', "//input[contains(@class, 'js-filter-search')]")
-    this.filterButton = new Button('Filter Button', '//button[contains(@class, "js-set-options")]')
+  constructor(id) {
+    this.id = id
+    this.searchField = new TextBox('Search field', `//div[@data-filter-id=${this.id}]//input[contains(@class, 'js-filter-search')]`)
+    this.filterButton = new Button('Filter Button', `//div[@data-filter-id=${this.id}]//button[contains(@class, "js-set-options")]`)
   }
 
   _createFilterCheckbox(brandName) {
@@ -14,7 +15,9 @@ class FilterPopupForm {
   }
 
   async selectCheckbox(brandName) {
-    await this._createFilterCheckbox(brandName).click()
+    const checkbox = this._createFilterCheckbox(brandName)
+    await checkbox.waitForClickable()
+    await checkbox.click()
   }
 
   async clickFilterButton() {
@@ -22,5 +25,4 @@ class FilterPopupForm {
     await this.filterButton.click()
   }
 }
-
-export default new FilterPopupForm()
+export default FilterPopupForm

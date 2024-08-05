@@ -1,20 +1,23 @@
 import Browser from '../../framework/Browser.js'
 import Timeouts from '../constants/Timeouts.js'
-import ManufacturerFilterForm from '../pageobjects/filters/ManufacturerFilterForm.js'
+import FilterForm from '../pageobjects/filters/FilterForm.js'
 import FilterPopupForm from '../pageobjects/filters/FilterPopupForm.js'
 import ItemGroupPage from '../pageobjects/itemPage/ItemGroupPage.js'
 import SortByForm from '../pageobjects/itemPage/SortByForm.js'
+import Filters from '../constants/Filters.js'
 
 class Steps {
   async filterByManufacturer(manufacturer) {
-    await ManufacturerFilterForm.seeMoreButton.click()
-    await FilterPopupForm.searchField.setText(manufacturer)
-    await FilterPopupForm.selectCheckbox(manufacturer)
-    await FilterPopupForm.clickFilterButton()
+    const filterForm = new FilterForm(Filters.MANUFACTURED_BY)
+    await filterForm.clickSeeMoreLink()
+    const filterPopUpForm = new FilterPopupForm(Filters.MANUFACTURED_BY)
+    await filterPopUpForm.searchField.setText(manufacturer)
+    await filterPopUpForm.selectCheckbox(manufacturer)
+    await filterPopUpForm.clickFilterButton()
 
     await Browser.waitUntil(
       async () => {
-        const pageHeader = await ItemGroupPage.getPageHeader()
+        const pageHeader = await ItemGroupPage.getPageHeaderText()
         return pageHeader.includes(manufacturer)
       },
       {
@@ -38,4 +41,5 @@ class Steps {
     }
   }
 }
+
 export default new Steps()
