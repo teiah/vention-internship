@@ -1,47 +1,28 @@
+import ItemCardForm from './ItemCardForm.js'
 import Label from '../../../framework/elements/Label.js'
-import { $ } from '@wdio/globals'
 
 class PriceCardForm {
-  constructor() {
-    this.priceBox = new Label('Price box', '(//div[@id="card_grid"]//div[@class="card-v2-pricing"])')
+  constructor(index) {
+    this.index = index
+    this.rrpPriceLabel = new Label('RRP Price', this.getRrpPriceLocator())
+    this.newPriceLabel = new Label('New Price', this.getNewPriceLocator())
   }
 
-  async getAllPriceBoxes() {
-    return this.priceBox.getElements()
+  getRrpPriceLocator() {
+    return ItemCardForm.cardLabel.selector + `[${this.index + 1}]//div[@class="card-v2-pricing"]/*[1]`
   }
 
-  async getAllPrices() {
-    const priceElements = await this.getAllPriceBoxes()
-    const prices = []
-    for (let i = 0; i < priceElements.length - 1; i++) {
-      const xpathRrp = priceElements[i].selector + `[${i + 1}]/*[1]`
-      let rrpPrice = await $(xpathRrp).getText()
-
-      const xpathNew = await $(priceElements[i].selector + `[${i + 1}]/*[2]`)
-      const newPrice = await $(xpathNew).getText()
-
-      //additional logic for discounted products with their price as <s>
-      if (/^\d/.test(rrpPrice)) {
-        rrpPrice = newPrice
-      }
-
-      const parsedRrpPrice = this._parsePrice(rrpPrice)
-      const parsedNewPrice = this._parsePrice(newPrice)
-
-      prices.push(isNaN(parsedRrpPrice) ? parsedNewPrice : parsedRrpPrice)
-    }
-    return prices
+  getNewPriceLocator() {
+    return ItemCardForm.cardLabel.selector + `[${this.index + 1}]//div[@class="card-v2-pricing"]/*[2]`
   }
 
-  _parsePrice(string) {
-    return parseFloat(
-      string
-        .replace(/^\s*от\s*/, '')
-        .replace(/^\s*НОВО\s*/, '')
-        .replace(/\./g, '')
-        .replace(/,/, '.'),
-    )
+  async getRrpPrice() {
+    return this.rrpPriceLabel.getText()
+  }
+
+  async getNewPrice() {
+    return this.newPriceLabel.getText()
   }
 }
 
-export default new PriceCardForm()
+export default PriceCardForm
