@@ -1,4 +1,6 @@
 import Link from '../../framework/elements/Link.js'
+import Browser from '../../framework/Browser.js'
+import Timeouts from '../constants/Timeouts.js'
 
 class DepartmentMenuBox {
   _createDepartmentLabel(departmentId) {
@@ -15,9 +17,14 @@ class DepartmentMenuBox {
     await this._createDepartmentLabel(departmentId).moveTo()
   }
 
-  async openCategory(departmentId, categoryId) {
+  async openCategory(departmentId, category) {
     await this.hoverOverDepartment(departmentId)
-    await this._createCategoryLink(categoryId).click()
+    await this._createCategoryLink(category.id).click()
+
+    await Browser.waitUntil(async () => (await Browser.getUrl()).includes(category.url), {
+      timeout: Timeouts.SHORT_TIMEOUT,
+      timeoutMsg: 'Expected URL to change.',
+    })
   }
 }
 

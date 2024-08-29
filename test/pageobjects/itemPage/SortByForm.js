@@ -8,7 +8,7 @@ class SortByForm {
 
   _createSortOptionLink(optionId, sortDir) {
     const xpath = `//a[@data-sort-id="${optionId}" and @data-sort-dir="${sortDir}"]`
-    return new Link('Category link', xpath)
+    return new Link('Sort option link', xpath)
   }
 
   getSortOption(optionId, sortDir) {
