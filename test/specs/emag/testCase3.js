@@ -1,7 +1,6 @@
 import Browser from '../../../framework/Browser.js'
 import { assert } from 'chai'
 import Titles from '../../constants/Titles.js'
-import CategoriesMenuBox from '../../pageobjects/DepartmentMenuBox.js'
 import Logger from '../../../framework/logger/Logger.js'
 import ItemGroupPage from '../../pageobjects/itemPage/ItemGroupPage.js'
 import Manufacturers from '../../constants/Manufacturers.js'
@@ -12,6 +11,7 @@ import Assertions from '../../steps/Assertions.js'
 import CookiesForm from '../../pageobjects/CookiesForm.js'
 import LoginPromptForm from '../../pageobjects/LoginPromptForm.js'
 import Categories from '../../constants/Categories.js'
+import DepartmentMenuBox from '../../pageobjects/DepartmentMenuBox.js'
 
 describe('Search and Filter Functionality on eMAG.bg', function () {
   it('should filter and sort Braun products correctly', async function () {
@@ -24,7 +24,7 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     await LoginPromptForm.closeLoginPrompt()
 
     Logger.logStep('Navigate to "Здраве и красота – Ел. самобръсначки”"')
-    await CategoriesMenuBox.openCategory(Departments.HEALTH_BEAUTY, Categories.ELECTRIC_SHAVERS)
+    await DepartmentMenuBox.openCategory(Departments.HEALTH_BEAUTY, Categories.ELECTRIC_SHAVERS)
     assert.include(await Browser.getPageTitle(), Categories.ELECTRIC_SHAVERS.title, 'Category page title does not match.')
     assert.equal(await ItemGroupPage.getPageHeaderText(), Categories.ELECTRIC_SHAVERS.name, 'Page header does not match.')
 

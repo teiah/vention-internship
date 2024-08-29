@@ -1,7 +1,6 @@
 import Browser from '../../../framework/Browser.js'
 import { assert } from 'chai'
 import Titles from '../../constants/Titles.js'
-import CategoriesMenuBox from '../../pageobjects/DepartmentMenuBox.js'
 import Logger from '../../../framework/logger/Logger.js'
 import ItemGroupPage from '../../pageobjects/itemPage/ItemGroupPage.js'
 import Manufacturers from '../../constants/Manufacturers.js'
@@ -12,6 +11,7 @@ import Assertions from '../../steps/Assertions.js'
 import CookiesForm from '../../pageobjects/CookiesForm.js'
 import LoginPromptForm from '../../pageobjects/LoginPromptForm.js'
 import Categories from '../../constants/Categories.js'
+import DepartmentMenuBox from '../../pageobjects/DepartmentMenuBox.js'
 
 describe('Search and Filter Functionality on eMAG.bg', function () {
   it('should filter and sort Daikin products correctly', async function () {
@@ -24,7 +24,7 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     await LoginPromptForm.closeLoginPrompt()
 
     Logger.logStep('Navigate to "Големи електроуреди – Климатици"')
-    await CategoriesMenuBox.openCategory(Departments.LARGE_APPLIANCES, Categories.AIR_CONDITIONING)
+    await DepartmentMenuBox.openCategory(Departments.LARGE_APPLIANCES, Categories.AIR_CONDITIONING)
     assert.include(await Browser.getPageTitle(), Categories.AIR_CONDITIONING.name, 'Category page title does not match.')
     assert.equal(await ItemGroupPage.getPageHeaderText(), Categories.AIR_CONDITIONING.name, 'Page header does not match.')
 

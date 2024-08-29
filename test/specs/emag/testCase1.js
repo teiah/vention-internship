@@ -1,7 +1,7 @@
 import Browser from '../../../framework/Browser.js'
 import { assert } from 'chai'
 import Titles from '../../constants/Titles.js'
-import CategoriesMenuBox from '../../pageobjects/DepartmentMenuBox.js'
+import DepartmentMenuBox from '../../pageobjects/DepartmentMenuBox.js'
 import Logger from '../../../framework/logger/Logger.js'
 import ItemGroupPage from '../../pageobjects/itemPage/ItemGroupPage.js'
 import Manufacturers from '../../constants/Manufacturers.js'
@@ -18,7 +18,7 @@ describe('Search and Filter Functionality on eMAG.bg', function () {
     assert.equal(await Browser.getPageTitle(), Titles.HOMEPAGE_TAB_TITLE, 'Home page title does not match.')
 
     Logger.logStep('Navigate to "Мобилни телефони"')
-    await CategoriesMenuBox.openCategory(Departments.PHONES_TABLETS_LAPTOPS, Categories.MOBILE_PHONES)
+    await DepartmentMenuBox.openCategory(Departments.PHONES_TABLETS_LAPTOPS, Categories.MOBILE_PHONES)
     const pageTitleText = await Browser.getPageTitle()
     assert.include(pageTitleText, Categories.MOBILE_PHONES.name, 'Category page title does not match.')
     const pageHeaderText = await ItemGroupPage.getPageHeaderText()
