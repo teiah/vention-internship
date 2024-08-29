@@ -22,20 +22,22 @@ class Steps {
       },
       {
         timeout: Timeouts.SHORT_TIMEOUT,
+        interval: Timeouts.WAIT_FOR_INTERVAL,
         timeoutMsg: `Expected page header to include ${manufacturer}`,
       },
     )
   }
 
   async sortProductsBy(sortOption) {
+    await SortByForm.sortByButton.moveTo()
     await SortByForm.sortByButton.click()
-    const optionElement = await SortByForm.getSortOption(sortOption.id, sortOption.dir)
-    await optionElement.waitForClickable()
+    const optionElement = await SortByForm.getSortOption(sortOption.id, sortOption.direction)
     await optionElement.click()
 
     if (sortOption.url) {
       await Browser.waitUntil(async () => (await Browser.getUrl()).includes(sortOption.url), {
         timeout: Timeouts.SHORT_TIMEOUT,
+        interval: Timeouts.WAIT_FOR_INTERVAL,
         timeoutMsg: 'Expected URL to change after selecting filter',
       })
     }
